@@ -1,0 +1,25 @@
+{
+  "name": "twf",
+  "displayName": "TWF - The Way Forward",
+  "expo": {
+    "name": "twf",
+    "slug": "twf",
+    "privacy": "public",
+    "icon": "https://user-images.githubusercontent.com/1780255/76164954-b97b3880-615b-11ea-85b9-209ac7932d89.png",
+    "sdkVersion": "36.0.0",
+    "version": "1.0.0",
+    "entryPoint": "index.js",
+    "packagerOpts": {
+      "projectRoot": "."
+    },
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "description": "TWF project to show case for minimum viable components",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
