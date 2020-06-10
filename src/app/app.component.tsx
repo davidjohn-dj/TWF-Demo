@@ -1,4 +1,6 @@
 import React from 'react';
+import { Provider } from "react-redux";
+import store from "../redux/store";
 import { AppearanceProvider } from 'react-native-appearance';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
@@ -35,19 +37,21 @@ const App = ({ mapping, theme }): React.ReactElement => {
 
   return (
     <React.Fragment>
-      <IconRegistry icons={[EvaIconsPack, AppIconsPack]}/>
-      <AppearanceProvider>
-        <ApplicationProvider {...currentMapping} theme={currentTheme}>
-          <Theming.MappingContext.Provider value={mappingContext}>
-            <Theming.ThemeContext.Provider value={themeContext}>
-              <SafeAreaProvider>
-                <StatusBar/>
-                <AppNavigator/>
-              </SafeAreaProvider>
-            </Theming.ThemeContext.Provider>
-          </Theming.MappingContext.Provider>
-        </ApplicationProvider>
-      </AppearanceProvider>
+      <Provider store={store}>
+        <IconRegistry icons={[EvaIconsPack, AppIconsPack]} />
+        <AppearanceProvider>
+          <ApplicationProvider {...currentMapping} theme={currentTheme}>
+            <Theming.MappingContext.Provider value={mappingContext}>
+              <Theming.ThemeContext.Provider value={themeContext}>
+                <SafeAreaProvider>
+                  <StatusBar />
+                  <AppNavigator />
+                </SafeAreaProvider>
+              </Theming.ThemeContext.Provider>
+            </Theming.MappingContext.Provider>
+          </ApplicationProvider>
+        </AppearanceProvider>
+      </Provider>
     </React.Fragment>
   );
 };
@@ -64,6 +68,6 @@ export default (): React.ReactElement => (
     tasks={loadingTasks}
     initialConfig={defaultConfig}
     placeholder={Splash}>
-    {props => <App {...props}/>}
+    {props => <App {...props} />}
   </AppLoading>
 );
