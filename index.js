@@ -1,15 +1,9 @@
-// import 'expo/build/Expo.fx';
-// import registerRootComponent from 'expo/build/launch/registerRootComponent';
-import { activateKeepAwake } from 'expo-keep-awake';
+import { AppRegistry, Platform } from 'react-native';
+import App from './src/app/app.component';
 
-import { registerRootComponent } from 'expo';
+AppRegistry.registerComponent('TWF', () => App);
 
-import App from './App';
-
-if (__DEV__) {
-    activateKeepAwake();
+if (Platform.OS === 'web') {
+  const rootTag = document.getElementById('root') || document.getElementById('main');
+  AppRegistry.runApplication('TWF', { rootTag });
 }
-// registerRootComponent calls AppRegistry.registerComponent('main', () => App);
-// It also ensures that whether you load the app in the Expo client or in a native build,
-// the environment is set up appropriately
-registerRootComponent(App);

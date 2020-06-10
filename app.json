@@ -1,25 +1,40 @@
 {
-  "name": "twf",
-  "displayName": "TWF - The Way Forward",
   "expo": {
-    "name": "twf",
+    "name": "TWF",
     "slug": "twf",
-    "privacy": "public",
-    "icon": "https://user-images.githubusercontent.com/1780255/76164954-b97b3880-615b-11ea-85b9-209ac7932d89.png",
+    "version": "2.4.0",
     "sdkVersion": "36.0.0",
-    "version": "1.0.0",
-    "entryPoint": "index.js",
-    "packagerOpts": {
-      "projectRoot": "."
+    "description": "TWF - The Way Forward",
+    "ios": {
+      "bundleIdentifier": "com.nerdpine.twf",
+      "buildNumber": "3"
     },
+    "android": {
+      "package": "com.nerdpine.twf",
+      "versionCode": 3
+    },
+    "privacy": "public",
     "platforms": [
       "ios",
       "android",
       "web"
     ],
-    "description": "TWF project to show case for minimum viable components",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "icon": "./src/assets/images/image-app-icon.png",
+    "splash": {
+      "image": "src/assets/images/image-splash.png",
+      "resizeMode": "contain"
+    },
     "assetBundlePatterns": [
-      "**/*"
-    ]
+      "src/assets/images/*",
+      "src/assets/fonts",
+      "src/layouts/**/assets/*"
+    ],
+    "androidStatusBar": {
+      "barStyle": "dark-content",
+      "backgroundColor": "#F7F9FC"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
