@@ -1,12 +1,16 @@
 import React from 'react';
+import { connect } from "react-redux";
 import { StyleSheet, View, Image, ImageRequireSource } from 'react-native';
-import { Avatar, Divider, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
+import { Avatar, Divider, TopNavigation, TopNavigationAction, Button, Text } from '@ui-kitten/components';
 import { SafeAreaLayout } from '../../components/safe-area-layout.component';
 import { MenuGridList } from '../../components/menu-grid-list.component';
 import { MenuIcon } from '../../components/icons';
 import { data } from './data';
+import { updateDataObj } from "../../redux/actions/translator";
 
-export const ComponentsScreen = ({ navigation }): React.ReactElement => {
+const ComponentScreen = ({ navigation, translator, user, updateDataObj }): React.ReactElement => {
+
+  console.log(" translator.counter", translator.counter);
 
   const onItemPress = (index: number): void => {
     navigation.navigate(data[index].route);
@@ -18,21 +22,6 @@ export const ComponentsScreen = ({ navigation }): React.ReactElement => {
       onPress={navigation.toggleDrawer}
     />
   );
-
-  // const IconProvider = (source: ImageRequireSource) => ({
-  //   toReactElement: ({ animation, ...style }) => (
-  //     <Image style={style} source={source}/>
-  //   ),
-  // });
-
-  // const renderTitle = () => (
-  //   <View style={styles.titleContainer}>
-  //     <Avatar
-  //       style={styles.logo}
-  //       source={require('../../assets/images/twf.png')}
-  //     />
-  //   </View>
-  // );
 
   return (
     <SafeAreaLayout
@@ -47,6 +36,13 @@ export const ComponentsScreen = ({ navigation }): React.ReactElement => {
         data={data}
         onItemPress={onItemPress}
       />
+      <Button onPress={() => updateDataObj({ counter: translator.counter + 1 })}>
+        BUTTON
+      </Button>
+
+      <Text style={styles.text}>
+        Pressed {translator.counter} times
+      </Text>
     </SafeAreaLayout>
   );
 };
@@ -64,7 +60,23 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  text: {
+    marginHorizontal: 8,
+  },
   logo: {
-    // marginHorizontal: 16,
+    marginHorizontal: 16,
   },
 });
+
+const actionCreators = {
+  updateDataObj
+};
+
+function mapStateToProps(state) {
+  return {
+    translator: state.translator,
+    user: state.user
+  };
+}
+
+export const ComponentsScreen = connect(mapStateToProps, actionCreators)(ComponentScreen);
