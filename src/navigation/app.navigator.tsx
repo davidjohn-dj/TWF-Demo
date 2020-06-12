@@ -1,7 +1,7 @@
 import React from 'react';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { TWFNavigator } from './twf.navigator';
-import { HomeNavigator } from './home.navigator copy';
+import { HomeNavigator } from './home.navigator';
 
 /*
  * Navigation theming: https://reactnavigation.org/docs/en/next/themes.html
@@ -17,6 +17,6 @@ const navigatorTheme = {
 
 export const AppNavigator = (): React.ReactElement => (
   <NavigationContainer theme={navigatorTheme}>
-    <HomeNavigator />
+    <TWFNavigator />
   </NavigationContainer>
 );
