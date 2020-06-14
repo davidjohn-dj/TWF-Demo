@@ -14,7 +14,9 @@ import { SignUp2Screen } from '../scenes/auth/sign-up-2.component';
 import { SignUp3Screen } from '../scenes/auth/sign-up-3.component';
 import { SignUp4Screen } from '../scenes/auth/sign-up-4.component';
 import { ForgotPasswordScreen } from '../scenes/auth/forgot-password.component';
-import { LoginScreen } from '../twf/login/index';
+import  Login from '../twf/login/login';
+import  PreLogin from '../twf/prelogin/prelogin';
+import  Register from '../twf/register/register';
 
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -22,8 +24,8 @@ const Stack = createStackNavigator();
 export const TWFNavigator = (): React.ReactElement => (
   
   <Stack.Navigator headerMode='none'>
-    <Stack.Screen name='LoginScreen' component={LoginScreen}/>
-    <Stack.Screen name='Register' component={SignUp2Screen}/>
-    <Stack.Screen name='SignUp1Screen' component={SignUp1Screen}/>
+    <Stack.Screen name='PreLogin' component={PreLogin}/>
+    <Stack.Screen name='Register' component={Register}/>
+    <Stack.Screen name='Login' component={Login}/>
   </Stack.Navigator>
 );

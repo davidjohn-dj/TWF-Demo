@@ -7,7 +7,7 @@ import { updateDataObj } from "../../redux/actions/translator";
 import { connect } from "react-redux";
 
 
-const LoginPage = ({ navigation, translator, user, updateDataObj }): React.ReactElement => {
+const DashboardPage = ({ navigation, translator, user, updateDataObj }): React.ReactElement => {
 
   const [email, setEmail] = React.useState<string>();
   const [password, setPassword] = React.useState<string>();
@@ -33,7 +33,7 @@ const LoginPage = ({ navigation, translator, user, updateDataObj }): React.React
         <Text
           category='h1'
           status='control'>
-          Hello
+          Hello Dashboard
         </Text>
         <Text
           style={styles.signInLabel}
@@ -144,4 +144,4 @@ function mapStateToProps(state) {
   };
 }
 
-export const LoginScreen = connect(mapStateToProps, actionCreators)(LoginPage);
+export const DashboardScreen = connect(mapStateToProps, actionCreators)(DashboardPage);
