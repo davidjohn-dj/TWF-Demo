@@ -17,6 +17,6 @@ const navigatorTheme = {
 
 export const AppNavigator = (): React.ReactElement => (
   <NavigationContainer theme={navigatorTheme}>
-    <TWFNavigator />
+    <HomeNavigator />
   </NavigationContainer>
 );

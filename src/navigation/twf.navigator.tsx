@@ -14,7 +14,7 @@ import { SignUp2Screen } from '../scenes/auth/sign-up-2.component';
 import { SignUp3Screen } from '../scenes/auth/sign-up-3.component';
 import { SignUp4Screen } from '../scenes/auth/sign-up-4.component';
 import { ForgotPasswordScreen } from '../scenes/auth/forgot-password.component';
-import { LoginScreen } from '../twf/components/login.component';
+import { LoginScreen } from '../twf/login/index';
 
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
