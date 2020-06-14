@@ -32,7 +32,7 @@ export default props => {
   const styles = useStyleSheet(themedStyles);
 
   const onSignInButtonPress = () => {
-    props.navigation && props.navigation.navigate('Login');
+    props.navigation && props.navigation.navigate('Dashboard');
   };
 
   const onForgotPasswordButtonPress = () => {

@@ -24,7 +24,7 @@ export const DashboardNavigator = (props): React.ReactElement => {
       style={styles.safeArea}
       insets='top'>
       <TopNavigation
-        title='TWF'
+        title='Dashboard'
         leftControl={renderDrawerAction()}
       />
       <Divider/>

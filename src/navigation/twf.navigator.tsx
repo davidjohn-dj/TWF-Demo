@@ -17,6 +17,7 @@ import { ForgotPasswordScreen } from '../scenes/auth/forgot-password.component';
 import  Login from '../twf/login/login';
 import  PreLogin from '../twf/prelogin/prelogin';
 import  Register from '../twf/register/register';
+import { DashboardNavigator } from '../twf/components/dashboard.component';
 
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -27,5 +28,6 @@ export const TWFNavigator = (): React.ReactElement => (
     <Stack.Screen name='PreLogin' component={PreLogin}/>
     <Stack.Screen name='Register' component={Register}/>
     <Stack.Screen name='Login' component={Login}/>
+    <Stack.Screen name='Dashboard' component={DashboardNavigator}/>
   </Stack.Navigator>
 );
