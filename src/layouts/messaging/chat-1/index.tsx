@@ -116,7 +116,7 @@ const themedStyles = StyleService.create({
     flexDirection: 'row',
     paddingHorizontal: 8,
     paddingVertical: 16,
-    backgroundColor: 'background-basic-color-1',
+    backgroundColor: 'twf-light-background',
   },
   attachButton: {
     borderRadius: 24,

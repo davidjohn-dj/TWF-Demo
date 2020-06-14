@@ -7,6 +7,7 @@ import { EyeIcon, EyeOffIcon, PersonIcon } from './extra/icons';
 import { KeyboardAvoidingView } from './extra/3rd-party';
 import FormInput from '../components/form-components/input.component';
 import ErrorMessage from '../components/form-components/error.message';
+import TwfLogo from '../components/logo/IconLogo';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -51,26 +52,10 @@ export default props => {
     }
   }
 
-  // const required = value => value ? undefined : 'Required';
-
-  // const emailCheck = value =>
-  //   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
-  //     'Invalid email address' : undefined;
-
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text
-          category='h1'
-          status='control'>
-          Hello
-        </Text>
-        <Text
-          style={styles.signInLabel}
-          category='s1'
-          status='control'>
-          Sign in to your account
-        </Text>
+        <TwfLogo style={styles.signInLabel} category='s1' status='control' />
       </View>
       <Formik
         initialValues={{ email: '', password: '' }}
@@ -150,18 +135,19 @@ export default props => {
 
 const themedStyles = StyleService.create({
   container: {
-    backgroundColor: 'background-basic-color-1',
+    backgroundColor: 'twf-light-background',
   },
   headerContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     minHeight: 216,
-    backgroundColor: 'color-primary-default',
+    // backgroundColor: 'color-primary-default',
   },
   formContainer: {
     flex: 1,
     paddingTop: 32,
     paddingHorizontal: 16,
+    backgroundColor: 'transparent'
   },
   signInLabel: {
     marginTop: 16,

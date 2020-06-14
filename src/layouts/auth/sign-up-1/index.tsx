@@ -166,7 +166,7 @@ export default ({ navigation }): React.ReactElement => {
 
 const themedStyles = StyleService.create({
   container: {
-    backgroundColor: 'background-basic-color-1',
+    backgroundColor: 'twf-light-background',
   },
   headerContainer: {
     minHeight: 216,

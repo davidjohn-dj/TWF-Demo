@@ -79,7 +79,7 @@
                 "backgroundColor": "background-basic-color-2"
               },
               "bottom": {
-                "backgroundColor": "background-basic-color-1"
+                "backgroundColor": "twf-light-background"
               }
             }
           }
