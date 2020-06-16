@@ -8,6 +8,7 @@ import { KeyboardAvoidingView } from './extra/3rd-party';
 import FormInput from '../components/form-components/input.component';
 import ErrorMessage from '../components/form-components/error.message';
 import TwfLogo from '../components/logo/IconLogo';
+import ScreenHeader from '../common/screen_header'
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -57,6 +58,10 @@ export default props => {
       <View style={styles.headerContainer}>
         <TwfLogo style={styles.signInLabel} category='s1' status='control' />
       </View>
+      <ScreenHeader
+              title = "Sign In"
+              subtitle = "Please enter your email and password"
+              />
       <Formik
         initialValues={{ email: '', password: '' }}
         onSubmit={values => {
@@ -100,16 +105,8 @@ export default props => {
                   onBlur={handleBlur('password')}
                 />
                 <ErrorMessage errorValue={touched.password && errors.password} />
-                <View style={styles.forgotPasswordContainer}>
-                  <Button
-                    style={styles.forgotPasswordButton}
-                    appearance='ghost'
-                    status='basic'
-                    onPress={onForgotPasswordButtonPress}>
-                    Forgot your password?
-                  </Button>
-                </View>
               </Layout>
+          
               <Button
                 style={styles.signInButton}
                 size='giant'
@@ -122,6 +119,15 @@ export default props => {
             </Fragment>
           )}
       </Formik>
+      <View style={styles.forgotPasswordContainer}>
+                  <Button
+                    style={styles.forgotPasswordButton}
+                    appearance='ghost'
+                    status='basic'
+                    onPress={onForgotPasswordButtonPress}>
+                    Forgot your password?
+                  </Button>
+                </View>
       <Button
         style={styles.signUpButton}
         appearance='ghost'

@@ -8,6 +8,7 @@ import { KeyboardAvoidingView } from './extra/3rd-party';
 import FormInput from '../components/form-components/input.component';
 import ErrorMessage from '../components/form-components/error.message';
 import TwfLogo from '../components/logo/IconLogo';
+import ScreenHeader from '../common/screen_header'
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -57,6 +58,10 @@ export default props => {
       <View style={styles.headerContainer}>
         <TwfLogo style={styles.signInLabel} category='s1' status='control' />
       </View>
+      <ScreenHeader
+              title = "Register"
+              subtitle = "Please fill your information"
+              />
       <Formik
         initialValues={{ email: '', password: '', phone: '' }}
         onSubmit={values => {
@@ -77,8 +82,24 @@ export default props => {
               <Layout
                 style={styles.formContainer}
                 level='1'>
+          <FormInput
+                  name='First Name'
+                  value={values.phone}
+                  placeholder='First Name'
+                  autoCapitalize='none'
+                  icon={PersonIcon}
+                  autoFocus
+                />
                 <FormInput
-                  name='email'
+                  name='Last Name'
+                  value={values.phone}
+                  placeholder='Last Name'
+                  autoCapitalize='none'
+                  icon={PersonIcon}
+                  autoFocus
+                />
+                <FormInput
+                  name='Email'
                   value={values.email}
                   onChangeText={handleChange('email')}
                   placeholder='Email'
@@ -89,9 +110,9 @@ export default props => {
                 />
                 <ErrorMessage errorValue={touched.email && errors.email} />
                 <FormInput
-                  name='phoneno'
+                  name='Mobile Number'
                   value={values.phone}
-                  placeholder='Phone'
+                  placeholder='Mobile Number'
                   autoCapitalize='none'
                   icon={PersonIcon}
                   autoFocus
@@ -108,15 +129,7 @@ export default props => {
                   onBlur={handleBlur('password')}
                 />
                 <ErrorMessage errorValue={touched.password && errors.password} />
-                <View style={styles.forgotPasswordContainer}>
-                  <Button
-                    style={styles.forgotPasswordButton}
-                    appearance='ghost'
-                    status='basic'
-                    onPress={onForgotPasswordButtonPress}>
-                    Forgot your password?
-                  </Button>
-                </View>
+            
               </Layout>
               <Button
                 style={styles.signInButton}
@@ -130,13 +143,10 @@ export default props => {
             </Fragment>
           )}
       </Formik>
-      <Button
-        style={styles.signUpButton}
-        appearance='ghost'
-        status='basic'
-        onPress={onSignInButtonPress}>
-        Eisting user? Login
-      </Button>
+      <View style={styles.signInContainer}>
+                  <Text>Already have an account?</Text>
+                  <Text onPress={onSignInButtonPress} style={{marginStart: 16}}>Sign in</Text>
+                </View>
     </KeyboardAvoidingView>
   );
 };
@@ -167,9 +177,11 @@ const themedStyles = StyleService.create({
     marginVertical: 12,
     marginHorizontal: 16,
   },
-  forgotPasswordContainer: {
+  signInContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    marginHorizontal: 16,
+    margin: 16
   },
   passwordInput: {
     marginTop: 16,
@@ -177,5 +189,9 @@ const themedStyles = StyleService.create({
   forgotPasswordButton: {
     paddingHorizontal: 0,
   },
+  alreadyhave: {
+    margin: 16,
+    color : "#1C1C1C",
+}
 });
 

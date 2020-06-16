@@ -5,14 +5,11 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { LayoutsNavigator } from './layouts.navigator';
-import { ComponentsNavigator } from './components.navigator';
-import { ThemesNavigator } from './themes.navigator';
-import { HomeBottomNavigation } from '../scenes/home/home-bottom-navigation.component';
-import { HomeDrawer } from '../scenes/home/home-drawer.component';
-import { LibrariesScreen } from '../scenes/libraries/libraries.component';
-import { TWFNavigator } from './twf.navigator';
-import {DashboardNavigator} from '../twf/components/dashboard.component'
+import { HomeDrawer } from '../../scenes/home/home-drawer.component';
+import  LoginScreen  from '../login/login';
+import RegisterScreen from '../register/register'
+import DashboardScreen from './dashboard'
+
 const BottomTab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -36,11 +33,11 @@ const TabBarVisibleOnRootScreenOptions = ({ route }): BottomTabNavigationOptions
   return { tabBarVisible: currentRoute && isOneOfRootRoutes(currentRoute) };
 };
 
-export const HomeNavigator = (): React.ReactElement => (
+export const DashboardNavigator = (): React.ReactElement => (
   <Drawer.Navigator
     screenOptions={{ gestureEnabled: false }}
     drawerContent={props => <HomeDrawer {...props}/>}>
-    <Drawer.Screen name='Home' component={DashboardNavigator}/>
-    <Drawer.Screen name='Libraries' component={LibrariesScreen}/>
+    <Drawer.Screen name='Home' component={DashboardScreen}/>
+    <Drawer.Screen name='Libraries' component={RegisterScreen}/>
   </Drawer.Navigator>
 );
