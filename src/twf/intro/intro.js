@@ -31,7 +31,7 @@ export default (props) => {
       </View>
       <ScreenHeader title="Get Tested" subtitle="Connect your test result" />
       <View style={styles.iconContainer}>
-        <Icon style={styles.icon} fill="#8F9BB3" name="star" />
+        <Icon style={styles.icon} fill="#8F9BB3" name="arrowhead-down-outline" />
       </View>
       <ScreenHeader
         title="Get Verified"
@@ -39,7 +39,7 @@ export default (props) => {
       />
 
       <View style={styles.iconContainer}>
-        <Icon style={styles.icon} fill="#8F9BB3" name="star" />
+        <Icon style={styles.icon} fill="#8F9BB3" name="arrowhead-down-outline" />
       </View>
       <ScreenHeader title="Get Back To Normal" subtitle="   " />
 
