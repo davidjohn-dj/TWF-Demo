@@ -14,10 +14,12 @@ import { SignUp2Screen } from '../scenes/auth/sign-up-2.component';
 import { SignUp3Screen } from '../scenes/auth/sign-up-3.component';
 import { SignUp4Screen } from '../scenes/auth/sign-up-4.component';
 import { ForgotPasswordScreen } from '../scenes/auth/forgot-password.component';
-import  Login from '../twf/login/login';
-import  PreLogin from '../twf/prelogin/prelogin';
-import  Intro from '../twf/intro/intro';
-import  Register from '../twf/register/register';
+import Login from '../twf/login/login';
+import PreLogin from '../twf/prelogin/prelogin';
+import Intro from '../twf/intro/intro';
+import OtpVerify from '../twf/otpverify/otpverify'
+import Register from '../twf/register/register';
+import ResetPassword from '../twf/resetpassword/resetpassword'
 import { DashboardNavigator } from '../twf/dashboard/home.navigator';
 import { LayoutsScreen } from '../scenes/layouts/layouts.component';
 
@@ -29,8 +31,10 @@ export const TWFNavigator = (): React.ReactElement => (
   <Stack.Navigator headerMode='none'>
     <Stack.Screen name='Intro' component={Intro}/>
     <Stack.Screen name='PreLogin' component={PreLogin}/>
+    <Stack.Screen name='ResetPassword' component={ResetPassword}/>
     <Stack.Screen name='Register' component={Register}/>
     <Stack.Screen name='Login' component={Login}/>
+    <Stack.Screen name='OtpVerify' component={OtpVerify}/>
     <Stack.Screen name='Dashboard' component={DashboardNavigator}/>
   </Stack.Navigator>
 );

@@ -37,11 +37,7 @@ export default props => {
   };
 
   const onForgotPasswordButtonPress = () => {
-    props.navigation && props.navigation.navigate('ResetPassword');
-  };
-
-  const onOtpVerifyButtonPress = () => {
-    props.navigation && props.navigation.navigate('OtpVerify');
+    props.navigation && props.navigation.navigate('ForgotPassword');
   };
 
   const onPasswordIconPress = () => {
@@ -63,8 +59,8 @@ export default props => {
         <TwfLogo style={styles.signInLabel} category='s1' status='control' />
       </View>
       <ScreenHeader
-              title = "Sign In"
-              subtitle = "Please enter your email and password"
+              title = "Multi-factor Verification"
+              subtitle = "Insert the verification code received on your phone"
               />
       <Formik
         initialValues={{ email: '', password: '' }}
@@ -87,7 +83,7 @@ export default props => {
                 style={styles.formContainer}
                 level='1'>
                 <FormInput
-                  name='email'
+                  name='enter otp'
                   value={values.email}
                   onChangeText={handleChange('email')}
                   placeholder='Email'
@@ -97,18 +93,6 @@ export default props => {
                   autoFocus
                 />
                 <ErrorMessage errorValue={touched.email && errors.email} />
-                <FormInput
-                  name='password'
-                  value={values.password}
-                  onChangeText={handleChange('password')}
-                  placeholder='Password'
-                  secureTextEntry={!passwordVisible}
-                  style={styles.passwordInput}
-                  icon={passwordVisible ? EyeIcon : EyeOffIcon}
-                  onIconPress={onPasswordIconPress}
-                  onBlur={handleBlur('password')}
-                />
-                <ErrorMessage errorValue={touched.password && errors.password} />
               </Layout>
           
               <Button
@@ -118,34 +102,15 @@ export default props => {
                 loading={isSubmitting}
                 onPress={handleSubmit}
               >
-                SIGN IN
+                Continue
               </Button>
             </Fragment>
           )}
       </Formik>
-      <View style={styles.forgotPasswordContainer}>
-                  <Button
-                    style={styles.forgotPasswordButton}
-                    appearance='ghost'
-                    status='basic'
-                    onPress={onForgotPasswordButtonPress}>
-                    Forgot your password?
-                  </Button>
+    
+      <View style={styles.signInContainer}>
+                  <Text onPress={onSignUpButtonPress} style={{marginStart: 16}}>Sign in</Text>
                 </View>
-      <Button
-        style={styles.signUpButton}
-        appearance='ghost'
-        status='basic'
-        onPress={onSignUpButtonPress}>
-        Don't have an account? Create
-      </Button>
-      <Button
-        style={styles.signUpButton}
-        appearance='ghost'
-        status='basic'
-        onPress={onOtpVerifyButtonPress}>
-        Otp Verify
-      </Button>
     </KeyboardAvoidingView>
   );
 };
