@@ -36,12 +36,12 @@ export default props => {
     props.navigation && props.navigation.navigate('Register');
   };
 
-  const goToNewPassword = () => {
-    props.navigation && props.navigation.navigate('NewPassword');
+  const onForgotPasswordButtonPress = () => {
+    props.navigation && props.navigation.navigate('ResetPassword');
   };
 
-  const onForgotPasswordButtonPress = () => {
-    props.navigation && props.navigation.navigate('ForgotPassword');
+  const onOtpVerifyButtonPress = () => {
+    props.navigation && props.navigation.navigate('OtpVerify');
   };
 
   const onPasswordIconPress = () => {
@@ -63,8 +63,8 @@ export default props => {
         <TwfLogo style={styles.signInLabel} category='s1' status='control' />
       </View>
       <ScreenHeader
-              title = "Multi-factor Verification"
-              subtitle = "Insert the verification code received on your phone"
+              title = "New Password"
+              subtitle = "Enter your new password to continue"
               />
       <Formik
         initialValues={{ email: '', password: '' }}
@@ -87,16 +87,29 @@ export default props => {
                 style={styles.formContainer}
                 level='1'>
                 <FormInput
-                  name='Mobile Number'
+                  name='New Password'
                   value={values.email}
                   onChangeText={handleChange('email')}
-                  placeholder='Mobile Number'
+                  placeholder='New Password'
                   autoCapitalize='none'
                   icon={PersonIcon}
                   onBlur={handleBlur('email')}
                   autoFocus
                 />
                 <ErrorMessage errorValue={touched.email && errors.email} />
+                <Text>Password Rules: </Text>
+                <FormInput
+                  name='Confirm Password'
+                  value={values.password}
+                  onChangeText={handleChange('password')}
+                  placeholder='Confirm Password'
+                  secureTextEntry={!passwordVisible}
+                  style={styles.passwordInput}
+                  icon={passwordVisible ? EyeIcon : EyeOffIcon}
+                  onIconPress={onPasswordIconPress}
+                  onBlur={handleBlur('password')}
+                />
+                <ErrorMessage errorValue={touched.password && errors.password} />
               </Layout>
           
               <Button
@@ -106,16 +119,11 @@ export default props => {
                 loading={isSubmitting}
                 onPress={handleSubmit}
               >
-                Reset
+                Update
               </Button>
             </Fragment>
           )}
       </Formik>
-    
-      <View style={styles.signInContainer}>
-                  <Text onPress={onSignUpButtonPress} style={{marginStart: 16}}>Sign in</Text>
-                  <Text onPress={goToNewPassword} style={{marginStart: 16}}>New Password</Text>
-                </View>
     </KeyboardAvoidingView>
   );
 };

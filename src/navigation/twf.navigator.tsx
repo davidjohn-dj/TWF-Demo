@@ -20,6 +20,7 @@ import Intro from '../twf/intro/intro';
 import OtpVerify from '../twf/otpverify/otpverify'
 import Register from '../twf/register/register';
 import ResetPassword from '../twf/resetpassword/resetpassword'
+import NewPassword from '../twf/newpassword/newpassword'
 import { DashboardNavigator } from '../twf/dashboard/home.navigator';
 import { LayoutsScreen } from '../scenes/layouts/layouts.component';
 
@@ -32,6 +33,7 @@ export const TWFNavigator = (): React.ReactElement => (
     <Stack.Screen name='Intro' component={Intro}/>
     <Stack.Screen name='PreLogin' component={PreLogin}/>
     <Stack.Screen name='ResetPassword' component={ResetPassword}/>
+    <Stack.Screen name='NewPassword' component={NewPassword}/>
     <Stack.Screen name='Register' component={Register}/>
     <Stack.Screen name='Login' component={Login}/>
     <Stack.Screen name='OtpVerify' component={OtpVerify}/>
