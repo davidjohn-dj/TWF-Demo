@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { AuthScreen } from '../scenes/auth/auth.component';
@@ -35,15 +35,19 @@ export const TWFNavigator = (props): React.ReactElement => (
   <Stack.Navigator headerMode='none'>
     {console.log("props", props)}
     {props.user.isFirstLogin &&
-    <Stack.Screen name='Intro' component={Intro} />}
+      <Stack.Screen name='Intro' component={Intro} />}
     <Stack.Screen name='PreLogin' component={PreLogin} />
     <Stack.Screen name='ResetPassword' component={ResetPassword} />
     <Stack.Screen name='NewPassword' component={NewPassword} />
     <Stack.Screen name='Register' component={Register} />
     <Stack.Screen name='Login' component={Login} />
-    <Stack.Screen name='OtpVerify' component={OtpVerify} />
-    <Stack.Screen name='Dashboard' component={DashboardNavigator} />
-    <Stack.Screen name='GenerateQR' component={GenerateQR}/>
-    <Stack.Screen name='ScanQR' component={ScanQR}/>
+    {/* {props.user.isLoggedIn && */}
+      <Fragment>
+        <Stack.Screen name='OtpVerify' component={OtpVerify} />
+        <Stack.Screen name='Dashboard' component={DashboardNavigator} />
+        <Stack.Screen name='GenerateQR' component={GenerateQR} />
+        {/* <Stack.Screen name='ScanQR' component={ScanQR} /> */}
+      </Fragment>
+    {/* } */}
   </Stack.Navigator>
 );

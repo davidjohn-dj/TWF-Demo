@@ -2,7 +2,7 @@ import { AsyncStorage, YellowBox } from 'react-native';
 
 const MAPPING_KEY = 'mapping';
 const THEME_KEY = 'theme';
-const IS_FIRST_TIME_KEY = true;
+const IS_FIRST_TIME_KEY = 'isFirstTime';
 
 export class AppStorage {
 
@@ -12,9 +12,9 @@ export class AppStorage {
     });
   };
 
-  static getIsFirstTime = async () => {
+  static getIsFirstTime = async (fallback) => {
     return await AsyncStorage.getItem(IS_FIRST_TIME_KEY).then((isfirsttime) => {
-      return isfirsttime;
+      return isfirsttime || fallback;
     });
   };
 

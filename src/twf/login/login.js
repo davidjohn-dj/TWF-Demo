@@ -8,7 +8,8 @@ import { KeyboardAvoidingView } from './extra/3rd-party';
 import FormInput from '../components/form-components/input.component';
 import ErrorMessage from '../components/form-components/error.message';
 import TwfLogo from '../components/logo/IconLogo';
-import ScreenHeader from '../common/screen_header'
+import ScreenHeader from '../common/screen_header';
+import { getUserInfo } from '../../redux/actions/user';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -51,9 +52,12 @@ export default props => {
   const handleSubmit = values => {
     console.log("values: ", values);
     if (values.email.length > 0 && values.password.length > 0) {
-      setTimeout(() => {
-        props.navigation.navigate('Home')
-      }, 3000)
+      getUserInfo(values).then(() => {
+        props.navigation.navigate('Home');
+      });
+      // setTimeout(() => {
+      //   props.navigation.navigate('Home')
+      // }, 3000)
     }
   }
 
@@ -63,9 +67,9 @@ export default props => {
         <TwfLogo style={styles.signInLabel} category='s1' status='control' />
       </View>
       <ScreenHeader
-              title = "Sign In"
-              subtitle = "Please enter your email and password"
-              />
+        title="Sign In"
+        subtitle="Please enter your email and password"
+      />
       <Formik
         initialValues={{ email: '', password: '' }}
         onSubmit={values => {
@@ -110,7 +114,7 @@ export default props => {
                 />
                 <ErrorMessage errorValue={touched.password && errors.password} />
               </Layout>
-          
+
               <Button
                 style={styles.signInButton}
                 size='giant'
@@ -124,14 +128,14 @@ export default props => {
           )}
       </Formik>
       <View style={styles.forgotPasswordContainer}>
-                  <Button
-                    style={styles.forgotPasswordButton}
-                    appearance='ghost'
-                    status='basic'
-                    onPress={onForgotPasswordButtonPress}>
-                    Forgot your password?
+        <Button
+          style={styles.forgotPasswordButton}
+          appearance='ghost'
+          status='basic'
+          onPress={onForgotPasswordButtonPress}>
+          Forgot your password?
                   </Button>
-                </View>
+      </View>
       <Button
         style={styles.signUpButton}
         appearance='ghost'
