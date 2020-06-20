@@ -27,7 +27,7 @@ const loadingTasks: Task[] = [
 
 const defaultConfig: { mapping: Mapping, theme: Theme } = {
   mapping: 'eva',
-  theme: 'light',
+  theme: 'light'
 };
 
 const App = ({ mapping, theme }): React.ReactElement => {

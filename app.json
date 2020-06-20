@@ -36,5 +36,6 @@
       "backgroundColor": "#F7F9FC"
     },
     "entryPoint": "node_modules/expo/AppEntry.js"
-  }
+  },
+  "API_HOST": "https://lb0cjv28h0.execute-api.us-east-1.amazonaws.com/DEV/user"
 }

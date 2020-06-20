@@ -27,16 +27,18 @@ import { LayoutsScreen } from '../scenes/layouts/layouts.component';
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
 
-export const TWFNavigator = (): React.ReactElement => (
-  
+export const TWFNavigator = (props): React.ReactElement => (
+
   <Stack.Navigator headerMode='none'>
-    <Stack.Screen name='Intro' component={Intro}/>
-    <Stack.Screen name='PreLogin' component={PreLogin}/>
-    <Stack.Screen name='ResetPassword' component={ResetPassword}/>
-    <Stack.Screen name='NewPassword' component={NewPassword}/>
-    <Stack.Screen name='Register' component={Register}/>
-    <Stack.Screen name='Login' component={Login}/>
-    <Stack.Screen name='OtpVerify' component={OtpVerify}/>
-    <Stack.Screen name='Dashboard' component={DashboardNavigator}/>
+    {console.log("props", props)}
+    {props.user.isFirstLogin &&
+      <Stack.Screen name='Intro' component={Intro} />}
+    <Stack.Screen name='PreLogin' component={PreLogin} />
+    <Stack.Screen name='ResetPassword' component={ResetPassword} />
+    <Stack.Screen name='NewPassword' component={NewPassword} />
+    <Stack.Screen name='Register' component={Register} />
+    <Stack.Screen name='Login' component={Login} />
+    <Stack.Screen name='OtpVerify' component={OtpVerify} />
+    <Stack.Screen name='Dashboard' component={DashboardNavigator} />
   </Stack.Navigator>
 );

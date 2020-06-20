@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { SET_USER_DATA } from '../types';
+import CONFIG from './../../../app.json';
+import Toast, {DURATION} from 'react-native-easy-toast';
 
-const baseURL = process.env.API_HOST;
+const baseURL = CONFIG.API_HOST;
 
 export function setUserData(content) {
   return {
@@ -10,12 +12,19 @@ export function setUserData(content) {
   };
 }
 
-export function getUserInfo(email) {
+export function getUserInfo(data) {
   const config = {
-    headers: { email: email }
+    body: {
+      username: data.email,
+      password: data.password
+    },
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': ''
+    }
   };
   return (dispatch) => {
-    return axios.get(baseURL + 'api/user/single-user', config).then((response) => {
+    return axios.post(baseURL + '/user-login', config).then((response) => {
       if (response.data.body) {
         dispatch(setUserData({
           userId: response.data.body.id,

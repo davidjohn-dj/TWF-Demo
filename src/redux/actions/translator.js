@@ -5,6 +5,8 @@ import { SET_TRANSLATOR_DATA } from '../types';
 const baseURL = process.env.API_HOST;
 const localProxy = process.env.NODE_ENV === "development" ? 'apiv2/' : '';
 
+console.log("baseURL", baseURL);
+
 export function setTranslationData(content) {
   return {
     type: SET_TRANSLATOR_DATA,

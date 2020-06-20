@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from "react-redux";
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { TWFNavigator } from './twf.navigator';
 import { HomeNavigator } from './home.navigator';
@@ -15,8 +16,19 @@ const navigatorTheme = {
   },
 };
 
-export const AppNavigator = (): React.ReactElement => (
+export const Navigator = (props): React.ReactElement => (
   <NavigationContainer theme={navigatorTheme}>
-    <TWFNavigator />
+    <TWFNavigator {...props} />
   </NavigationContainer>
 );
+
+const actionCreators = {
+};
+
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+
+export const AppNavigator = connect(mapStateToProps, actionCreators)(Navigator);

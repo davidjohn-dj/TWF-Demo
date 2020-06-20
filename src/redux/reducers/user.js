@@ -1,22 +1,9 @@
 import { SET_USER_DATA } from '../types';
+import { AppStorage } from '../../services/app-storage.service';
 
 const INITIAL_STATE = {
-  userId: 0,
-  userName: '',
-  userRole: '',
-  preferredUserName: '',
-  isProjectExist: false,
-  isFirstLogin: false,
-  emailId: '',
-  keycloak: {},
-  agencyArr: [],
-  countryArr: [],
-  usersList: [],
-  showEditUserModal: false,
-  editUserObj: {},
-  sideMenuExpand: false,
-  languageArr: [],
-  routerPaths: []
+  isFirstLogin: AppStorage.getIsFirstTime().then(result => result) === false ? false : true,
+  isLoggedIn: false
 };
 
 export default (state = INITIAL_STATE, action = {}) => {
