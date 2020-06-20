@@ -1,11 +1,8 @@
 import React, { Fragment } from "react";
 import { View } from "react-native";
 import {
-  Button,
-  StyleService,
-  Text,
-  Icon,
-  useStyleSheet,
+  Button, StyleService, Text, Icon,
+  useStyleSheet, Layout
 } from "@ui-kitten/components";
 import { EyeIcon, EyeOffIcon, PersonIcon } from "./extra/icons";
 import { KeyboardAvoidingView } from "./extra/3rd-party";
@@ -25,24 +22,26 @@ export default (props) => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.headerContainer}>
-        <TwfLogo style={styles.signInLabel} gradient1={1} gradient2={2} gradient3={3}category="s1" status="control" />
+        <TwfLogo style={styles.signInLabel} gradient1={1} gradient2={2} gradient3={3} category="s1" status="control" />
       </View>
-      <ScreenHeader title="Get Tested" subtitle="Connect your test result" />
-      <View style={styles.iconContainer}>
-        <Icon style={styles.icon} fill={styles.primaryColor.color} name="arrowhead-down" />
-      </View>
-      <ScreenHeader
-        title="Get Verified"
-        subtitle="Securely share health status"
-      />
+      <Layout style={styles.introContainer} level='1'>
+        <ScreenHeader title="Get Tested" subtitle="Connect your test result" />
+        <View style={styles.iconContainer}>
+          <Icon style={styles.icon} fill={styles.primaryColor.color} name="arrowhead-down" />
+        </View>
+        <ScreenHeader
+          title="Get Verified"
+          subtitle="Securely share health status"
+        />
 
-      <View style={styles.iconContainer}>
-        <Icon style={styles.icon} fill={styles.primaryColor.color} name="arrowhead-down" />
-      </View>
-      <ScreenHeader title={<View>
-        <Text style={styles.textAlignBold}>Get Back To</Text>
-        <Text style={styles.text2title}>Normal</Text>
-      </View>} />
+        <View style={styles.iconContainer}>
+          <Icon style={styles.icon} fill={styles.primaryColor.color} name="arrowhead-down" />
+        </View>
+        <ScreenHeader title={<View>
+          <Text style={styles.textAlignBold}>Get Back To</Text>
+          <Text style={styles.text2title}>Normal</Text>
+        </View>} />
+      </Layout>
       <Button style={styles.nextButton} appearance='ghost'
         status='primary' onPress={onNextButtonPress}>Next</Button>
     </KeyboardAvoidingView>
@@ -52,6 +51,14 @@ export default (props) => {
 const themedStyles = StyleService.create({
   primaryColor: {
     color: 'color-primary-default'
+  },
+  introContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // paddingTop: 32,
+    paddingHorizontal: 16,
+    backgroundColor: 'transparent'
   },
   container: {
     backgroundColor: "twf-light-background",
@@ -81,7 +88,8 @@ const themedStyles = StyleService.create({
   nextButton: {
     justifyContent: "center",
     alignItems: "center",
-    margin: 5,
+    marginHorizontal: 16,
+    marginBottom: 20
   },
   iconContainer: {
     justifyContent: "center",
@@ -98,12 +106,6 @@ const themedStyles = StyleService.create({
     minHeight: 160,
     marginBottom: 15
     // backgroundColor: 'color-primary-default',
-  },
-  formContainer: {
-    flex: 1,
-    paddingTop: 32,
-    paddingHorizontal: 16,
-    backgroundColor: "transparent",
   },
   signInLabel: {
     marginTop: 16
