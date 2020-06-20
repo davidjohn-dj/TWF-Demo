@@ -6,6 +6,7 @@ import { KeyboardAvoidingView } from './extra/3rd-party';
 import TwfLogo from '../components/logo/IconLogo';
 import TwfText from '../common/twf_text'
 import ScreenHeader from '../common/screen_header'
+import GenerateQR from '../generateqr/generateqr'
 
 export default props => {
 
@@ -14,11 +15,11 @@ export default props => {
   const styles = useStyleSheet(themedStyles);
 
   const onSignUpButtonPress = () => {
-    props.navigation && props.navigation.navigate('Register');
+    props.navigation && props.navigation.navigate('GenerateQR');
   };
 
   const onSignInButtonPress = () => {
-    props.navigation && props.navigation.navigate('Login');
+    props.navigation && props.navigation.navigate('ScanQR');
   };
 
   return (

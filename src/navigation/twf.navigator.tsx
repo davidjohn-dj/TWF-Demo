@@ -21,7 +21,10 @@ import OtpVerify from '../twf/otpverify/otpverify'
 import Register from '../twf/register/register';
 import ResetPassword from '../twf/resetpassword/resetpassword'
 import NewPassword from '../twf/newpassword/newpassword'
-import { DashboardNavigator } from '../twf/dashboard/home.navigator';
+import GenerateQR from '../twf/generateqr/generateqr'
+import ScanQR from '../twf/scanqr/scanqr'
+
+import DashboardNavigator from '../twf/dashboard/homenavigator';
 import { LayoutsScreen } from '../scenes/layouts/layouts.component';
 
 const TopTab = createMaterialTopTabNavigator();
@@ -32,7 +35,7 @@ export const TWFNavigator = (props): React.ReactElement => (
   <Stack.Navigator headerMode='none'>
     {console.log("props", props)}
     {props.user.isFirstLogin &&
-      <Stack.Screen name='Intro' component={Intro} />}
+    <Stack.Screen name='Intro' component={Intro} />}
     <Stack.Screen name='PreLogin' component={PreLogin} />
     <Stack.Screen name='ResetPassword' component={ResetPassword} />
     <Stack.Screen name='NewPassword' component={NewPassword} />
@@ -40,5 +43,7 @@ export const TWFNavigator = (props): React.ReactElement => (
     <Stack.Screen name='Login' component={Login} />
     <Stack.Screen name='OtpVerify' component={OtpVerify} />
     <Stack.Screen name='Dashboard' component={DashboardNavigator} />
+    <Stack.Screen name='GenerateQR' component={GenerateQR}/>
+    <Stack.Screen name='ScanQR' component={ScanQR}/>
   </Stack.Navigator>
 );
