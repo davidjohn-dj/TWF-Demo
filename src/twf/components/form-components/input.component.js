@@ -1,16 +1,15 @@
 import React from 'react';
 import { View } from 'react-native'
-import { Input, Text, StyleService, useStyleSheet } from '@ui-kitten/components';
+import { Input, CheckBox, Text, StyleService, useStyleSheet } from '@ui-kitten/components';
 
 export default function FormInput(props) {
-    const { label, ...inputProps } = props;
+    const { label, checkbox, ...inputProps } = props;
     const themeStyles = useStyleSheet(styles);
     return (
         <View style={themeStyles.inputContainer}>
             {label && <Text>{label}</Text>}
-            <Input
-                {...inputProps}
-            />
+            {!checkbox && <Input {...inputProps} />}
+            {checkbox && <CheckBox type="checkbox" {...inputProps} />}
             {/* {touched && ((error && <Text>{error}</Text>) || (warning && <Text>{warning}</Text>))} */}
         </View>
     );

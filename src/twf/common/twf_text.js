@@ -8,18 +8,17 @@ export default function TwfText(props) {
     return (
         <View style={styles.container}>
             {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
-            </View>
+        </View>
     );
 }
 
 const styles = StyleService.create({
     container: {
-        flexDirection: 'column',
-        flexWrap: 'wrap',
+        justifyContent: 'center',
         alignItems: 'center',
-      },
+    },
     subtitle: {
         margin: 16,
-        color : "#1C1C1C",
+        color: "#1C1C1C",
     }
 })

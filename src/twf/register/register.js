@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { View } from 'react-native';
-import { Button, Input, Layout, StyleService, Text, useStyleSheet } from '@ui-kitten/components';
+import { Button, CheckBox, Layout, StyleService, Text, useStyleSheet } from '@ui-kitten/components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { EyeIcon, EyeOffIcon, PersonIcon } from './extra/icons';
@@ -11,14 +11,29 @@ import TwfLogo from '../components/logo/IconLogo';
 import ScreenHeader from '../common/screen_header'
 
 const validationSchema = Yup.object().shape({
+  first_name: Yup.string()
+    .label('First Name')
+    .required('Please enter your first name'),
+  last_name: Yup.string()
+    .label('Last Name')
+    .required('Please enter your last name'),
   email: Yup.string()
     .label('Email')
     .email('Enter a valid email')
-    .required('Please enter a registered email'),
+    .required('Please enter your email'),
+  phone_number: Yup.number()
+    .label('Mobile Number')
+    .required('Please enter your mobile number'),
   password: Yup.string()
     .label('Password')
     .required('Please enter your password')
-    .min(4, 'Password must have more than 4 characters ')
+    .min(8, 'Password must have more than 8 characters '),
+  confirmPassword: Yup.string()
+    .label('Confirm Password')
+    .required('Please enter your password once again'),
+  termsAccepted: Yup.boolean()
+    .label('Terms Acceptance')
+    .required('Please accept the Terms and Conditions')
 });
 
 export default props => {
@@ -29,6 +44,7 @@ export default props => {
   // const [email, setEmail] = React.useState();
   // const [password, setPassword] = React.useState();
   const [passwordVisible, setPasswordVisible] = React.useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = React.useState(false);
 
   const styles = useStyleSheet(themedStyles);
 
@@ -36,12 +52,12 @@ export default props => {
     props.navigation && props.navigation.navigate('Dashboard');
   };
 
-  const onForgotPasswordButtonPress = () => {
-    props.navigation && props.navigation.navigate('PreLogin');
-  };
-
   const onPasswordIconPress = () => {
     setPasswordVisible(!passwordVisible);
+  };
+
+  const onConfirmPasswordIconPress = () => {
+    setConfirmPasswordVisible(!confirmPasswordVisible);
   };
 
   const handleSubmit = values => {
@@ -56,14 +72,14 @@ export default props => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.headerContainer}>
-        <TwfLogo style={styles.signInLabel} category='s1' status='control' />
+        <TwfLogo style={styles.signInLabel} gradient1={43} gradient2={44} gradient3={45} category='s1' status='control' />
       </View>
       <ScreenHeader
-              title = "Register"
-              subtitle = "Please fill your information"
-              />
+        title="Register"
+        subtitle="Please fill in your information"
+      />
       <Formik
-        initialValues={{ email: '', password: '', phone: '' }}
+        initialValues={{ first_name: '', last_name: '', email: '', phone_number: '', password: '', confirmPassword: '', }}
         onSubmit={values => {
           handleSubmit(values)
         }}
@@ -82,55 +98,82 @@ export default props => {
               <Layout
                 style={styles.formContainer}
                 level='1'>
-          <FormInput
-                  name='First Name'
-                  value={values.phone}
+                <FormInput
+                  name='first_name'
+                  value={values.first_name}
+                  onChangeText={handleChange('first_name')}
                   placeholder='First Name'
                   autoCapitalize='none'
                   icon={PersonIcon}
                   autoFocus
                 />
+                {(touched.first_name || errors.first_name) && <ErrorMessage errorValue={touched.first_name && errors.first_name} />}
                 <FormInput
-                  name='Last Name'
-                  value={values.phone}
+                  name='last_name'
+                  value={values.last_name}
+                  onChangeText={handleChange('last_name')}
                   placeholder='Last Name'
                   autoCapitalize='none'
+                  style={styles.formInput}
                   icon={PersonIcon}
-                  autoFocus
                 />
+                {(touched.last_name || errors.last_name) && <ErrorMessage errorValue={touched.last_name && errors.last_name} />}
                 <FormInput
-                  name='Email'
+                  name='email'
                   value={values.email}
                   onChangeText={handleChange('email')}
                   placeholder='Email'
                   autoCapitalize='none'
                   icon={PersonIcon}
+                  style={styles.formInput}
                   onBlur={handleBlur('email')}
-                  autoFocus
                 />
-                <ErrorMessage errorValue={touched.email && errors.email} />
+                {(touched.email || errors.email) && <ErrorMessage errorValue={touched.email && errors.email} />}
                 <FormInput
-                  name='Mobile Number'
-                  value={values.phone}
+                  name='phone_number'
+                  value={values.phone_number}
+                  onChangeText={handleChange('phone_number')}
                   placeholder='Mobile Number'
                   autoCapitalize='none'
                   icon={PersonIcon}
-                  autoFocus
+                  style={styles.formInput}
                 />
+                {(touched.phone_number || errors.phone_number) && <ErrorMessage errorValue={touched.phone_number && errors.phone_number} />}
                 <FormInput
                   name='password'
                   value={values.password}
                   onChangeText={handleChange('password')}
                   placeholder='Password'
                   secureTextEntry={!passwordVisible}
-                  style={styles.passwordInput}
+                  style={styles.formInput}
                   icon={passwordVisible ? EyeIcon : EyeOffIcon}
                   onIconPress={onPasswordIconPress}
                   onBlur={handleBlur('password')}
                 />
-                <ErrorMessage errorValue={touched.password && errors.password} />
-            
+                {(touched.password || errors.password) && <ErrorMessage errorValue={touched.password && errors.password} />}
+                <FormInput
+                  name='confirmPassword'
+                  value={values.confirmPassword}
+                  onChangeText={handleChange('confirmPassword')}
+                  placeholder='Confirm Password'
+                  secureTextEntry={!confirmPasswordVisible}
+                  style={styles.formInput}
+                  icon={confirmPasswordVisible ? EyeIcon : EyeOffIcon}
+                  onIconPress={onConfirmPasswordIconPress}
+                  onBlur={handleBlur('confirmPassword')}
+                />
+                {(touched.confirmPassword || errors.confirmPassword) && <ErrorMessage errorValue={touched.confirmPassword && errors.confirmPassword} />}
               </Layout>
+              <FormInput
+                name='termsAccepted'
+                checked={values.termsAccepted}
+                checkbox={true}
+                style={styles.termsCheckBox}
+                textStyle={styles.termsCheckBoxText}
+                text={'By checking this box, you agree to our Terms and Conditions'}
+                onChange={handleChange('termsAccepted')}
+              />
+              {(touched.termsAccepted || errors.termsAccepted) && <ErrorMessage errorValue={touched.termsAccepted && errors.termsAccepted} />}
               <Button
                 style={styles.signInButton}
                 size='giant'
@@ -144,9 +187,9 @@ export default props => {
           )}
       </Formik>
       <View style={styles.signInContainer}>
-                  <Text>Already have an account?</Text>
-                  <Text onPress={onSignInButtonPress} style={{marginStart: 16}}>Sign in</Text>
-                </View>
+        <Text>Already have an account?</Text>
+        <Text onPress={onSignInButtonPress} style={{ marginStart: 16 }}>Sign in</Text>
+      </View>
     </KeyboardAvoidingView>
   );
 };
@@ -158,7 +201,7 @@ const themedStyles = StyleService.create({
   headerContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: 216,
+    minHeight: 160,
     // backgroundColor: 'color-primary-default',
   },
   formContainer: {
@@ -183,7 +226,7 @@ const themedStyles = StyleService.create({
     marginHorizontal: 16,
     margin: 16
   },
-  passwordInput: {
+  formInput: {
     marginTop: 16,
   },
   forgotPasswordButton: {
@@ -191,7 +234,18 @@ const themedStyles = StyleService.create({
   },
   alreadyhave: {
     margin: 16,
-    color : "#1C1C1C",
-}
+    color: "twf-regular-text-color",
+  },
+  termsCheckBox: {
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 16,
+    marginRight: 16
+  },
+  termsCheckBoxText: {
+    fontSize: 11,
+    lineHeight: 14,
+    color: 'text-hint-color',
+  }
 });
 

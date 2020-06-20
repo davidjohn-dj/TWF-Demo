@@ -1,32 +1,34 @@
 import React from 'react';
 import { View } from 'react-native'
-import { Input, Text, StyleService, useStyleSheet } from '@ui-kitten/components';
+import { Text, StyleService, useStyleSheet } from '@ui-kitten/components';
 
 export default function ScreenHeader(props) {
-    const { title, subtitle, ...inputProps } = props;
-    const themeStyles = useStyleSheet(styles);
+    const { title, subtitle } = props;
+    const styles = useStyleSheet(themeStyles);
     return (
         <View style={styles.container}>
-            {title && <Text style={styles.title}>{title}</Text>}
+            {title && typeof title === 'string' ? <Text style={styles.title}>{title}</Text> : title && <View style={styles.title}>{title}</View>}
             {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
-
-            {/* {touched && ((error && <Text>{error}</Text>) || (warning && <Text>{warning}</Text>))} */}
         </View>
     );
 }
 
-const styles = StyleService.create({
+const themeStyles = StyleService.create({
     container: {
-        flexDirection: 'column',
-        flexWrap: 'wrap',
+        fontFamily: "lato-regular",
+        justifyContent: 'center',
         alignItems: 'center',
-      },
+        textAlign: 'center'
+    },
     title: {
-        margin: 16,
-        color : "#181461",
-        fontSize: 26,
+        fontFamily: "lato-bold",
+        maxWidth: 200,
+        marginBottom: 16,
+        paddingTop: 8,
+        color: "twf-blue-color",
+        fontSize: 26
     },
     subtitle: {
-        color : "#1C1C1C",
+        color: "twf-regular-text-color",
     }
 })

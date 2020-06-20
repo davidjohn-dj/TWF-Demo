@@ -15,31 +15,31 @@ export default props => {
   const styles = useStyleSheet(themedStyles);
 
   const onSignUpButtonPress = () => {
-    props.navigation && props.navigation.navigate('GenerateQR');
+    props.navigation && props.navigation.navigate('Register');
   };
 
   const onSignInButtonPress = () => {
-    props.navigation && props.navigation.navigate('ScanQR');
+    props.navigation && props.navigation.navigate('Login');
   };
 
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.headerContainer}>
-        <TwfLogo style={styles.signInLabel} category='s1' status='control' />
+        <TwfLogo style={styles.signInLabel} gradient1={12} gradient2={13} gradient3={14} category='s1' status='control' />
       </View>
       <ScreenHeader
-              title = "Welcome"
-              subtitle = "Sign in or Register to continue"
-              />
+        title="Welcome"
+        subtitle="Sign in or Register to continue"
+      />
       <Button
         style={styles.signInButton}
         appearance='giant'
-        status='basic'
+        status='primary'
         onPress={onSignInButtonPress}>
         Log In
       </Button>
       <TwfText
-      subtitle = "or"
+        subtitle="or"
       />
       <Button
         style={styles.registerButton}
@@ -76,6 +76,8 @@ const themedStyles = StyleService.create({
     marginHorizontal: 16,
   },
   registerButton: {
+    backgroundColor: 'twf-dark-color',
+    borderColor: 'twf-dark-color',
     marginHorizontal: 16,
   },
   forgotPasswordContainer: {

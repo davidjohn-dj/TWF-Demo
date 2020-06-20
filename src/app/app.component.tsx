@@ -18,6 +18,8 @@ const loadingTasks: Task[] = [
   // Should be used it when running Expo.
   // In Bare RN Project this is configured by react-native.config.js
   () => LoadFontsTask({
+    'lato-regular': require('../assets/fonts/Lato-Regular.ttf'),
+    'lato-bold': require('../assets/fonts/Lato-Bold.ttf'),
     'opensans-regular': require('../assets/fonts/opensans-regular.ttf'),
     'roboto-regular': require('../assets/fonts/roboto-regular.ttf'),
   }),

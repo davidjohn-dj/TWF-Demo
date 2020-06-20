@@ -1,6 +1,6 @@
 {
   "strict": {
-    "text-font-family": "opensans-regular"
+    "text-font-family": "lato-regular"
   },
   "components": {
     "TopNavigation": {

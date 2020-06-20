@@ -60,12 +60,12 @@ export default props => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.headerContainer}>
-        <TwfLogo style={styles.signInLabel} category='s1' status='control' />
+        <TwfLogo style={styles.signInLabel} gradient1={53} gradient2={54} gradient3={55} category='s1' status='control' />
       </View>
       <ScreenHeader
-              title = "Multi-factor Verification"
-              subtitle = "Insert the verification code received on your phone"
-              />
+        title="Multi-factor Verification"
+        subtitle="Insert the verification code received on your phone"
+      />
       <Formik
         initialValues={{ email: '', password: '' }}
         onSubmit={values => {
@@ -98,7 +98,7 @@ export default props => {
                 />
                 <ErrorMessage errorValue={touched.email && errors.email} />
               </Layout>
-          
+
               <Button
                 style={styles.signInButton}
                 size='giant'
@@ -111,11 +111,11 @@ export default props => {
             </Fragment>
           )}
       </Formik>
-    
+
       <View style={styles.signInContainer}>
-                  <Text onPress={onSignUpButtonPress} style={{marginStart: 16}}>Sign in</Text>
-                  <Text onPress={goToNewPassword} style={{marginStart: 16}}>New Password</Text>
-                </View>
+        <Text onPress={onSignUpButtonPress} style={{ marginStart: 16 }}>Sign in</Text>
+        <Text onPress={goToNewPassword} style={{ marginStart: 16 }}>New Password</Text>
+      </View>
     </KeyboardAvoidingView>
   );
 };

@@ -2,8 +2,6 @@ import React, { Fragment } from "react";
 import { View } from "react-native";
 import {
   Button,
-  Input,
-  Layout,
   StyleService,
   Text,
   Icon,
@@ -27,11 +25,11 @@ export default (props) => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.headerContainer}>
-        <TwfLogo style={styles.signInLabel} category="s1" status="control" />
+        <TwfLogo style={styles.signInLabel} gradient1={1} gradient2={2} gradient3={3}category="s1" status="control" />
       </View>
       <ScreenHeader title="Get Tested" subtitle="Connect your test result" />
       <View style={styles.iconContainer}>
-        <Icon style={styles.icon} fill="#8F9BB3" name="arrowhead-down" />
+        <Icon style={styles.icon} fill={styles.primaryColor.color} name="arrowhead-down" />
       </View>
       <ScreenHeader
         title="Get Verified"
@@ -39,20 +37,51 @@ export default (props) => {
       />
 
       <View style={styles.iconContainer}>
-        <Icon style={styles.icon} fill="#8F9BB3" name="arrowhead-down" />
+        <Icon style={styles.icon} fill={styles.primaryColor.color} name="arrowhead-down" />
       </View>
-      <ScreenHeader title="Get Back To Normal" subtitle="   " />
-
-      <View style={styles.iconContainer}>
-        <Text onPress={onNextButtonPress} status='primary' category='label'>Next</Text>
-      </View>
+      <ScreenHeader title={<View>
+        <Text style={styles.textAlignBold}>Get Back To</Text>
+        <Text style={styles.text2title}>Normal</Text>
+      </View>} />
+      <Button style={styles.nextButton} appearance='ghost'
+        status='primary' onPress={onNextButtonPress}>Next</Button>
     </KeyboardAvoidingView>
   );
 };
 
 const themedStyles = StyleService.create({
+  primaryColor: {
+    color: 'color-primary-default'
+  },
   container: {
     backgroundColor: "twf-light-background",
+  },
+  textAlignBold: {
+    fontFamily: "lato-bold",
+    justifyContent: 'center',
+    alignItems: 'center',
+    lineHeight: 20,
+    marginBottom: 10,
+    paddingTop: 8,
+    color: "twf-blue-color",
+    fontSize: 26
+  },
+  text2title: {
+    fontFamily: "lato-bold",
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    lineHeight: 18,
+    marginBottom: 16,
+    paddingTop: 8,
+    color: "twf-blue-color",
+    fontSize: 26
+  },
+  nextButton: {
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 5,
   },
   iconContainer: {
     justifyContent: "center",
@@ -60,13 +89,14 @@ const themedStyles = StyleService.create({
     margin: 16,
   },
   icon: {
-    width: 32,
-    height: 32,
+    width: 50,
+    height: 50,
   },
   headerContainer: {
     justifyContent: "center",
     alignItems: "center",
-    minHeight: 216,
+    minHeight: 160,
+    marginBottom: 15
     // backgroundColor: 'color-primary-default',
   },
   formContainer: {
@@ -76,7 +106,7 @@ const themedStyles = StyleService.create({
     backgroundColor: "transparent",
   },
   signInLabel: {
-    marginTop: 16,
+    marginTop: 16
   },
   signInButton: {
     marginTop: 32,

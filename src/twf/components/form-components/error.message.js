@@ -4,11 +4,9 @@ import { Text, StyleService, useStyleSheet } from '@ui-kitten/components';
 
 const ErrorMessage = ({ errorValue }) => {
     const themeStyles = useStyleSheet(styles);
-    return (
-        <View style={themeStyles.container}>
-            <Text style={themeStyles.errorText}>{errorValue}</Text>
-        </View>
-    );
+    return errorValue ? <View style={themeStyles.container}>
+        <Text style={themeStyles.errorText}>{errorValue}</Text>
+    </View> : null
 }
 
 const styles = StyleService.create({

@@ -74,5 +74,8 @@
   "color-danger-transparent-400": "rgba(221, 57, 42, 0.32)",
   "color-danger-transparent-500": "rgba(221, 57, 42, 0.4)",
   "color-danger-transparent-600": "rgba(221, 57, 42, 0.48)",
-  "twf-light-background": "#ECF1FA"
+  "twf-light-background": "#ECF1FA",
+  "twf-dark-color": "#09233C",
+  "twf-blue-color": "#181461",
+  "twf-regular-text-color": "#1C1C1C"
 }

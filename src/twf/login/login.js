@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { View } from 'react-native';
-import { Button, Input, Layout, StyleService, Text, useStyleSheet } from '@ui-kitten/components';
+import { Button, Layout, StyleService, useStyleSheet } from '@ui-kitten/components';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { EyeIcon, EyeOffIcon, PersonIcon } from './extra/icons';
@@ -19,13 +19,12 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .label('Password')
     .required('Please enter your password')
-    .min(4, 'Password must have more than 4 characters ')
+    .min(8, 'Password must have more than 8 characters ')
 });
 
 export default props => {
 
   // const formState = useSelector((state) => state.form);
-  // console.log("formState: ", formState);
 
   // const [email, setEmail] = React.useState();
   // const [password, setPassword] = React.useState();
@@ -64,7 +63,7 @@ export default props => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.headerContainer}>
-        <TwfLogo style={styles.signInLabel} category='s1' status='control' />
+        <TwfLogo style={styles.signInLabel} gradient1={13} gradient2={14} gradient3={15} category='s1' status='control' />
       </View>
       <ScreenHeader
         title="Sign In"
@@ -100,7 +99,7 @@ export default props => {
                   onBlur={handleBlur('email')}
                   autoFocus
                 />
-                <ErrorMessage errorValue={touched.email && errors.email} />
+                {(touched.email || errors.email) && <ErrorMessage errorValue={touched.email && errors.email} />}
                 <FormInput
                   name='password'
                   value={values.password}
@@ -112,7 +111,16 @@ export default props => {
                   onIconPress={onPasswordIconPress}
                   onBlur={handleBlur('password')}
                 />
-                <ErrorMessage errorValue={touched.password && errors.password} />
+                {(touched.password || errors.password) && <ErrorMessage errorValue={touched.password && errors.password} />}
+                <View style={styles.forgotPasswordContainer}>
+                  <Button
+                    style={styles.forgotPasswordButton}
+                    appearance='ghost'
+                    status='basic'
+                    onPress={onForgotPasswordButtonPress}>
+                    Forgot your password?
+                  </Button>
+                </View>
               </Layout>
 
               <Button
@@ -127,15 +135,6 @@ export default props => {
             </Fragment>
           )}
       </Formik>
-      <View style={styles.forgotPasswordContainer}>
-        <Button
-          style={styles.forgotPasswordButton}
-          appearance='ghost'
-          status='basic'
-          onPress={onForgotPasswordButtonPress}>
-          Forgot your password?
-                  </Button>
-      </View>
       <Button
         style={styles.signUpButton}
         appearance='ghost'

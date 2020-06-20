@@ -60,12 +60,12 @@ export default props => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.headerContainer}>
-        <TwfLogo style={styles.signInLabel} category='s1' status='control' />
+        <TwfLogo style={styles.signInLabel} gradient1={23} gradient2={24} gradient3={25} category='s1' status='control' />
       </View>
       <ScreenHeader
-              title = "New Password"
-              subtitle = "Enter your new password to continue"
-              />
+        title="New Password"
+        subtitle="Enter your new password to continue"
+      />
       <Formik
         initialValues={{ email: '', password: '' }}
         onSubmit={values => {
@@ -111,7 +111,7 @@ export default props => {
                 />
                 <ErrorMessage errorValue={touched.password && errors.password} />
               </Layout>
-          
+
               <Button
                 style={styles.signInButton}
                 size='giant'

@@ -4,11 +4,23 @@ import Svg, { Defs, LinearGradient, Stop, Path, G } from 'react-native-svg';
 /* SVGR has dropped some elements not supported by react-native-svg: style */
 
 function TwfLogo(props) {
+
+    const linearGradient = props.gradient1 ? "linear-gradient" + props.gradient1 : "linear-gradient";
+    const linearGradient2 = props.gradient2 ? "linear-gradient-2" + props.gradient2 : "linear-gradient-2";
+    const linearGradient3 = props.gradient3 ? "linear-gradient-3" + props.gradient3 : "linear-gradient-3";
+
+    const style = {
+        "cls-1": "#00a79d",
+        "cls-2": `url(#${linearGradient})`,
+        "cls-3": `url(#${linearGradient2})`,
+        "cls-4": `url(#${linearGradient3})`
+    };
+
     return (
         <Svg width={165.287} height={89.682} {...props}>
             <Defs>
                 <LinearGradient
-                    id="linear-gradient"
+                    id={linearGradient}
                     y1={0.5}
                     x2={4.066}
                     y2={0.5}
@@ -17,15 +29,15 @@ function TwfLogo(props) {
                     <Stop offset={1} stopColor="#09233c" />
                 </LinearGradient>
                 <LinearGradient
-                    id="linear-gradient-2"
+                    id={linearGradient2}
                     x1={0}
                     y1={0.5}
                     x2={4.066}
                     y2={0.5}
-                    xlinkHref="#linear-gradient"
+                    xlinkHref={`#${linearGradient}`}
                 />
                 <LinearGradient
-                    id="linear-gradient-3"
+                    id={linearGradient3}
                     x1={0.292}
                     y1={0.5}
                     x2={0.922}
@@ -64,13 +76,6 @@ function TwfLogo(props) {
         </Svg>
     )
 }
-
-const style = {
-    "cls-1": "#00a79d",
-    "cls-2": "url(#linear-gradient)",
-    "cls-3": "url(#linear-gradient-2)",
-    "cls-4": "url(#linear-gradient-3)"
-};
 
 export default TwfLogo
 

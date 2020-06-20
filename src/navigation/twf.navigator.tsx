@@ -42,12 +42,12 @@ export const TWFNavigator = (props): React.ReactElement => (
     <Stack.Screen name='Register' component={Register} />
     <Stack.Screen name='Login' component={Login} />
     {/* {props.user.isLoggedIn && */}
-      <Fragment>
+      <>
         <Stack.Screen name='OtpVerify' component={OtpVerify} />
         <Stack.Screen name='Dashboard' component={DashboardNavigator} />
         <Stack.Screen name='GenerateQR' component={GenerateQR} />
         {/* <Stack.Screen name='ScanQR' component={ScanQR} /> */}
-      </Fragment>
+      </>
     {/* } */}
   </Stack.Navigator>
 );
