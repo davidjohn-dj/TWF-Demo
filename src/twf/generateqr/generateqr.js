@@ -9,21 +9,71 @@ import {
 // import all basic components
 import QRCode from 'react-native-qrcode-svg';
 
-export default props => {
+export default class Home extends React.Component {
   
-    const [inputValue, setInputValue] = React.useState("");
-
-  
-  const setQRInputValue = () => {
-    // Function to get the value from input
-    // and Setting the value to the QRCode
-    setInputValue("ram");
-  };
-  
-  const onSubmitQR = () => {
-console.log("pressed ");
+  constructor(props) {
+    super(props);
+    this.state =
+    {
+      base64UserClaims: '',
+      base64UserSignature: '',
+      status: null
+    }
   }
 
+  componentDidMount() {
+    let newKeyPair = nacl.sign.keyPair()
+    console.log(newKeyPair)
+
+    let userClaims = { "created_at": "2020-05-17T11:49:01-07:00", "device_id": "946103e5-f6e2-46ca-a055-7621d3ef5022", "key_id": "95b820a8-9033-413b-b95d-390cd827acf5", "user_id": "6b57cca0-35b0-4d96-ada1-9db691b19cab" };
+
+    let userClaimsJSON = naclUtil.decodeUTF8(JSON.stringify(userClaims))
+    let userSignature = nacl.sign.detached(userClaimsJSON, newKeyPair.secretKey)
+    
+    let base64UserClaims = naclUtil.encodeBase64(userClaimsJSON)
+    let base64UserSignature = naclUtil.encodeBase64(userSignature)
+    console.log("Signed claims " + JSON.stringify(userClaims) + " with signature " + base64UserSignature)
+
+    let qrCodePayload = base64UserClaims + "." + base64UserSignature
+    console.log("√ Computed signed message: " + qrCodePayload)
+    this.setState({
+      keyPair: newKeyPair,
+      base64UserClaims: base64UserClaims,
+      base64UserSignature: base64UserSignature,
+      qrCodePayload: qrCodePayload
+    })
+  }
+
+  scanQrCode = () => {
+    const qrCodePayload = this.state.qrCodePayload
+    // console.log('signed Message', qrCodePayload)
+
+    //for Success case use below newKeyPair
+    let newKeyPair = this.state.keyPair;
+
+    //for Failure case use below newKeyPair
+    // let newKeyPair = nacl.sign.keyPair();
+
+    let components = qrCodePayload.split('.')
+    let claims = components[0]
+    let signature = components[1]
+
+    let success = nacl.sign.detached.verify(naclUtil.decodeBase64(claims), naclUtil.decodeBase64(signature), newKeyPair.publicKey)
+    console.log(success)
+    if (success) {
+      this.setState({
+        status: 'Success'
+      });
+    }
+    else {
+      this.setState({
+        status: 'Failed'
+      });
+    }
+  }
+
+
+  render(){
     return (
       <View style={styles.MainContainer}>
         <QRCode
@@ -63,6 +113,7 @@ console.log("pressed ");
         </TouchableOpacity>
       </View>
     );
+  }
 };
 
 

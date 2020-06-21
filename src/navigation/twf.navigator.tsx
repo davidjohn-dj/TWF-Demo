@@ -23,9 +23,13 @@ import ResetPassword from '../twf/resetpassword/resetpassword'
 import NewPassword from '../twf/newpassword/newpassword'
 import GenerateQR from '../twf/generateqr/generateqr'
 import ScanQR from '../twf/scanqr/scanqr'
-
-import DashboardNavigator from '../twf/dashboard/homenavigator';
 import { LayoutsScreen } from '../scenes/layouts/layouts.component';
+import { Dashboard } from '../twf/dashboard/dashboard';
+import GuardALocation from '../twf/guard-a-location/guard-a-location'
+import GetVerified from '../twf/get-verified/get-verified'
+import ScanAVerification from '../twf/scan-a-verification/scan-a-verification'
+import MyVerifications from '../twf/my-verifications/my-verifications'
+import AccountSettings from '../twf/account-settings/account-settings'
 
 const TopTab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -44,9 +48,14 @@ export const TWFNavigator = (props): React.ReactElement => (
     {/* {props.user.isLoggedIn && */}
       <>
         <Stack.Screen name='OtpVerify' component={OtpVerify} />
-        <Stack.Screen name='Dashboard' component={DashboardNavigator} />
+        <Stack.Screen name='Home' component={Dashboard} />
         <Stack.Screen name='GenerateQR' component={GenerateQR} />
         {/* <Stack.Screen name='ScanQR' component={ScanQR} /> */}
+        <Stack.Screen name='GuardALocation' component={GuardALocation} />
+        <Stack.Screen name='GetVerified' component={GetVerified} />
+        <Stack.Screen name='ScanAVerification' component={ScanAVerification} />
+        <Stack.Screen name='MyVerifications' component={MyVerifications} />
+        <Stack.Screen name='AccountSettings' component={AccountSettings} />
       </>
     {/* } */}
   </Stack.Navigator>

@@ -13,7 +13,7 @@ export default props => {
   const styles = useStyleSheet(themedStyles);
 
   const onSignUpButtonPress = () => {
-    props.navigation && props.navigation.navigate('Register');
+    props.navigation && props.navigation.navigate('Home');
   };
 
   const onSignInButtonPress = () => {

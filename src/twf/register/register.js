@@ -49,7 +49,7 @@ export default props => {
   const styles = useStyleSheet(themedStyles);
 
   const onSignInButtonPress = () => {
-    props.navigation && props.navigation.navigate('Dashboard');
+    props.navigation && props.navigation.navigate('Login');
   };
 
   const onPasswordIconPress = () => {
