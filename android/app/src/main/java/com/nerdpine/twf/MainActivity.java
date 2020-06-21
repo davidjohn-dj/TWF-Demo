@@ -41,7 +41,7 @@ public class MainActivity extends ReactActivity {
   }
 
   @Override protected String getMainComponentName() {
-    return "KittenTricks";
+    return "TWF";
   }
 
   public static void start(Context context) {
