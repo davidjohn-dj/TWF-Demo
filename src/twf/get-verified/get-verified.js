@@ -11,7 +11,9 @@ import { SafeAreaLayout } from '../../components/safe-area-layout.component';
 // import all basic components
 import QRCode from 'react-native-qrcode-svg';
 import { MenuIcon } from '../../components/icons';
-import ScreenHeader from '../common/screen_header'
+import ScreenHeader from '../common/screen_header';
+import { KeyboardAvoidingView } from './extra/3rd-party';
+
 
 export default props => {
 
@@ -34,10 +36,17 @@ export default props => {
         title='TWF'
         leftControl={renderDrawerAction()}
       />
+      <KeyboardAvoidingView style={styles.container}>
       <ScreenHeader
           title="Get Verified"
           subtitle=" ----- "
         />
+        <QRCode
+        style={styles.qrcode}
+          value={'Ramakrishna'}
+          size={250}
+        />
+        </KeyboardAvoidingView>
     </SafeAreaLayout>
   );
 };
@@ -45,5 +54,13 @@ export default props => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+  },
+  container: {
+    backgroundColor: 'twf-light-background',
+    flex: 1,
+  },
+  qrcode: {
+    flex: 1,
+    justifyContent: 'center',
   },
 });
