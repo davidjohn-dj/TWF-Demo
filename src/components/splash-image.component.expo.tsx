@@ -58,7 +58,9 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: '#0A223C', /* For browsers that do not support gradients */
+    // backgroundImage: 'linear-gradient(#00A79D, #0A223C)', /* Standard syntax (must be last) */
+    // backgroundColor: '#fff',
   },
   image: {
     width: undefined,
