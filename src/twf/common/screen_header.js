@@ -22,7 +22,7 @@ const themeStyles = StyleService.create({
     },
     title: {
         fontFamily: "lato-bold",
-        maxWidth: 200,
+        maxWidth: 300,
         marginBottom: 16,
         paddingTop: 8,
         color: "twf-blue-color",

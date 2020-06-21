@@ -32,8 +32,8 @@ export default props => {
 
   const styles = useStyleSheet(themedStyles);
 
-  const onSignUpButtonPress = () => {
-    props.navigation && props.navigation.navigate('Register');
+  const onSignInButtonPress = () => {
+    props.navigation && props.navigation.navigate('Login');
   };
 
   const onForgotPasswordButtonPress = () => {
@@ -109,7 +109,8 @@ export default props => {
       </Formik>
 
       <View style={styles.signInContainer}>
-        <Text onPress={onSignUpButtonPress} style={{ marginStart: 16 }}>Sign in</Text>
+        <Text>Want to try sign in again?</Text>
+        <Text onPress={onSignInButtonPress} style={{ marginStart: 16 }}>Sign in</Text>
       </View>
     </KeyboardAvoidingView>
   );
@@ -130,6 +131,12 @@ const themedStyles = StyleService.create({
     paddingTop: 32,
     paddingHorizontal: 16,
     backgroundColor: 'transparent'
+  },
+  signInContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginHorizontal: 16,
+    margin: 16
   },
   signInLabel: {
     marginTop: 16,
