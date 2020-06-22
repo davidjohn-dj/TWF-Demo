@@ -131,7 +131,7 @@ const themedStyles = StyleService.create({
     overflow: 'hidden',
     paddingHorizontal: 8,
     paddingVertical: 16,
-    backgroundColor: 'twf-light-background',
+    backgroundColor: '#ECF1FA',
   },
   imageItem: {
     width: 180,

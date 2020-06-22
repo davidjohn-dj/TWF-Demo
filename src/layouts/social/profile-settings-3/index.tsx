@@ -110,7 +110,7 @@ const themedStyles = StyleService.create({
   },
   description: {
     padding: 24,
-    backgroundColor: 'twf-light-background',
+    backgroundColor: '#ECF1FA',
   },
   setting: {
     padding: 16,

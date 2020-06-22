@@ -2,16 +2,34 @@ package com.nerdpine.twf;
 
 import android.app.Application;
 import android.content.Context;
+
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.nerdpine.twf.packages.splash.SplashScreenPackage;
+
+import org.unimodules.adapters.react.ModuleRegistryAdapter;
+import org.unimodules.adapters.react.ReactAdapterPackage;
+import org.unimodules.adapters.react.ReactModuleRegistryProvider;
+import org.unimodules.core.interfaces.Package;
+import org.unimodules.core.interfaces.SingletonModule;
+
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 import java.util.List;
 
+import expo.modules.camera.CameraPackage;
+
 public class MainApplication extends Application implements ReactApplication {
+    private final ReactModuleRegistryProvider mModuleRegistryProvider = new ReactModuleRegistryProvider(Arrays.<Package>asList(
+            new ReactAdapterPackage(),
+            // more packages, like these
+            // if you use expo-camera
+            new CameraPackage()
+            // etc.
+    ), Arrays.<SingletonModule>asList()); /* singletonModules */
 
   private final ReactNativeHost mReactNativeHost =
       new ReactNativeHost(this) {
@@ -25,6 +43,11 @@ public class MainApplication extends Application implements ReactApplication {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
           packages.add(new SplashScreenPackage());
+            // Add unimodules
+            List<ReactPackage> unimodules = Arrays.<ReactPackage>asList(
+                    new ModuleRegistryAdapter(mModuleRegistryProvider)
+            );
+            packages.addAll(unimodules);
           return packages;
         }
 

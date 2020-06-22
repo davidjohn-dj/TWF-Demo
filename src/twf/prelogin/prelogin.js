@@ -54,7 +54,7 @@ export default props => {
 
 const themedStyles = StyleService.create({
   container: {
-    backgroundColor: 'twf-light-background',
+    backgroundColor: '#ECF1FA',
   },
   headerContainer: {
     justifyContent: 'center',
@@ -75,8 +75,8 @@ const themedStyles = StyleService.create({
     marginHorizontal: 16,
   },
   registerButton: {
-    backgroundColor: 'twf-dark-color',
-    borderColor: 'twf-dark-color',
+    backgroundColor: '#09233C',
+    borderColor: '#09233C',
     marginHorizontal: 16,
   },
   forgotPasswordContainer: {

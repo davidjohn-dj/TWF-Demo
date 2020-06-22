@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    backgroundColor: 'twf-light-background',
+    backgroundColor: '#ECF1FA',
     flex: 1,
   },
   qrcode: {

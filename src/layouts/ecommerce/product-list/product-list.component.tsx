@@ -90,7 +90,7 @@ const themedStyles = StyleService.create({
     flex: 1,
     margin: 8,
     maxWidth: Dimensions.get('window').width / 2 - 24,
-    backgroundColor: 'twf-light-background',
+    backgroundColor: '#ECF1FA',
   },
   itemHeader: {
     height: 140,

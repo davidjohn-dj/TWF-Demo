@@ -65,7 +65,7 @@
                 "backgroundColor": "color-primary-700"
               },
               "bottom": {
-                "backgroundColor": "twf-light-background"
+                "backgroundColor": "#ECF1FA"
               }
             }
           }

@@ -145,7 +145,7 @@ const themedStyles = StyleService.create({
     height: 92,
     borderRadius: 46,
     alignSelf: 'center',
-    backgroundColor: 'twf-light-background',
+    backgroundColor: '#ECF1FA',
     tintColor: 'text-hint-color',
   },
   editAvatarButton: {

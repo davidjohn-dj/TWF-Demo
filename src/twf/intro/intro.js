@@ -61,7 +61,7 @@ const themedStyles = StyleService.create({
     backgroundColor: 'transparent'
   },
   container: {
-    backgroundColor: "twf-light-background",
+    backgroundColor: "#ECF1FA",
   },
   textAlignBold: {
     fontFamily: "lato-bold",
@@ -70,7 +70,7 @@ const themedStyles = StyleService.create({
     lineHeight: 20,
     marginBottom: 10,
     paddingTop: 8,
-    color: "twf-blue-color",
+    color: "#181461",
     fontSize: 26
   },
   text2title: {
@@ -82,7 +82,7 @@ const themedStyles = StyleService.create({
     lineHeight: 18,
     marginBottom: 16,
     paddingTop: 8,
-    color: "twf-blue-color",
+    color: "#181461",
     fontSize: 26
   },
   nextButton: {

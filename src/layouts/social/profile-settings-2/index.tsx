@@ -115,7 +115,7 @@ const themedStyles = StyleService.create({
   },
   description: {
     padding: 24,
-    backgroundColor: 'twf-light-background',
+    backgroundColor: '#ECF1FA',
   },
   doneButton: {
     marginHorizontal: 24,

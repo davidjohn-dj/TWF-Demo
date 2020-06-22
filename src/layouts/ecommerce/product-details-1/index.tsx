@@ -110,7 +110,7 @@ export default ({ navigation }): React.ReactElement => {
 const themedStyles = StyleService.create({
   container: {
     flex: 1,
-    backgroundColor: 'twf-light-background',
+    backgroundColor: '#ECF1FA',
   },
   commentList: {
     flex: 1,

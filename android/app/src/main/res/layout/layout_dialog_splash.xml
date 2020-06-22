@@ -5,5 +5,10 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="@drawable/bg_splash">
-
+    <ImageView
+        android:layout_width="207dp"
+        android:layout_height="113dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/img_background_splash" />
 </LinearLayout>

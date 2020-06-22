@@ -85,7 +85,7 @@ export default ({ navigation }): React.ReactElement => {
 
 const themedStyles = StyleService.create({
   container: {
-    backgroundColor: 'twf-light-background',
+    backgroundColor: '#ECF1FA',
   },
   headerContainer: {
     justifyContent: 'center',

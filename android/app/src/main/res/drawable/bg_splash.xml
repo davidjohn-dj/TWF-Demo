@@ -9,9 +9,9 @@
                 android:angle="-270" />
         </shape>
     </item>
-    <item
-        android:width="207dp"
-        android:height="113dp"
-        android:drawable="@mipmap/img_background_splash"
-        android:gravity="center" />
+<!--    <item-->
+<!--        android:width="207dp"-->
+<!--        android:height="113dp"-->
+<!--        android:drawable="@mipmap/img_background_splash"-->
+<!--        android:gravity="center" />-->
 </layer-list>

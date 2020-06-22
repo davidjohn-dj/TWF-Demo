@@ -1,4 +1,4 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   View,
@@ -58,28 +58,28 @@ export default props => {
         leftControl={renderDrawerAction()}
       />
       <ScreenHeader
-          title="Scan a verification"
-          subtitle=" ----- "
-        />
-      <Button
-          style={styles.scanButton}
-          appearance='giant'
-          status='primary'
-          onPress={() => setScanned(false)}>
-          Scan
-      </Button>
-        <View
-      style={{
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-      }}>
-      <BarCodeScanner
-        barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={styles.scanQR}
+        title="Scan a verification"
+        subtitle=" ----- "
       />
-    </View>
+      {scanned && <Button
+        style={styles.scanButton}
+        appearance='giant'
+        status='primary'
+        onPress={() => setScanned(false)}>
+        Scan
+      </Button>}
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+        }}>
+        <BarCodeScanner
+          barCodeTypes={BarCodeScanner.Constants.BarCodeType.qr ? [BarCodeScanner.Constants.BarCodeType.qr] : []}
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          style={styles.scanQR}
+        />
+      </View>
     </SafeAreaLayout>
   );
 };
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   },
   scanQR: {
     ...StyleSheet.absoluteFillObject,
-    height:300,
+    height: 300,
     margin: 16,
   },
 });

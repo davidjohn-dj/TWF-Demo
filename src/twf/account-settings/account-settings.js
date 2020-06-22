@@ -214,7 +214,7 @@ export default props => {
 const themedStyles = StyleService.create({
   container: {
     flex: 1,
-    backgroundColor: 'twf-light-background',
+    backgroundColor: '#ECF1FA',
   },
   headerContainer: {
     justifyContent: 'center',
@@ -252,7 +252,7 @@ const themedStyles = StyleService.create({
   },
   alreadyhave: {
     margin: 16,
-    color: "twf-regular-text-color",
+    color: "#1C1C1C",
   },
   termsCheckBox: {
     marginTop: 10,

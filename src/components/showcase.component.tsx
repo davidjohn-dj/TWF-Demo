@@ -55,7 +55,7 @@ export const Showcase = (props: ShowcaseProps): React.ReactElement => {
 const themedStyles = StyleService.create({
   container: {
     flex: 1,
-    backgroundColor: 'twf-light-background',
+    backgroundColor: '#ECF1FA',
   },
   item: {
     paddingHorizontal: 24,

@@ -25,10 +25,10 @@ const themeStyles = StyleService.create({
         maxWidth: 300,
         marginBottom: 16,
         paddingTop: 8,
-        color: "twf-blue-color",
+        color: "#181461",
         fontSize: 26
     },
     subtitle: {
-        color: "twf-regular-text-color",
+        color: "#1C1C1C",
     }
 })

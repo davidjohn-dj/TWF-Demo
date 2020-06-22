@@ -155,7 +155,7 @@ export default props => {
 
 const themedStyles = StyleService.create({
   container: {
-    backgroundColor: 'twf-light-background',
+    backgroundColor: '#ECF1FA',
   },
   headerContainer: {
     justifyContent: 'center',
