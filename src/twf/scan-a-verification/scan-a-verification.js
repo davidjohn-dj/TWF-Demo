@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import {
-  StyleSheet,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import { StyleSheet, View, Platform } from 'react-native';
+import { PERMISSIONS, check, request } from 'react-native-permissions';
+import { AppStorage } from '../../services/app-storage.service';
+import { connect } from 'react-redux';
 import { Button, CheckBox, Layout, StyleService, Text, useStyleSheet } from '@ui-kitten/components';
 import { Divider, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { SafeAreaLayout } from '../../components/safe-area-layout.component';
@@ -12,9 +10,20 @@ import { SafeAreaLayout } from '../../components/safe-area-layout.component';
 import QRCode from 'react-native-qrcode-svg';
 import { MenuIcon } from '../../components/icons';
 import ScreenHeader from '../common/screen_header'
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import BarcodeScanner, {
+  Exception,
+  FocusMode,
+  TorchMode,
+  CameraFillMode,
+  BarcodeType,
+  pauseScanner,
+  resumeScanner
+} from 'react-native-barcode-scanner-google';
 
-export default props => {
+const ScannerWrapped = props => {
+
+  const [cameraGranted, setCameraGranted] = useState(props.user.cameraGranted);
+  const [scanned, setScanned] = useState(false);
 
   const onItemPress = (index) => {
     props.navigation.navigate(data[index].route);
@@ -27,27 +36,47 @@ export default props => {
     />
   );
 
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
+  const handleCameraPermission = async () => {
+    if (Platform.OS === 'android') {
+      const res = await check(PERMISSIONS.ANDROID.CAMERA);
+
+      if (res === RESULTS.GRANTED) {
+        setCameraGranted(true);
+      } else if (res === RESULTS.DENIED) {
+        const res2 = await request(PERMISSIONS.ANDROID.CAMERA);
+        res2 === RESULTS.GRANTED
+          ? (async () => {
+            setCameraGranted(true);
+            await AppStorage.setCameraPermission(true);
+          })()
+          : setCameraGranted(false);
+      }
+    }
+    if (Platform.OS === 'ios') {
+      const res = await check(PERMISSIONS.IOS.CAMERA);
+
+      if (res === RESULTS.GRANTED) {
+        setCameraGranted(true);
+      } else if (res === RESULTS.DENIED) {
+        const res2 = await request(PERMISSIONS.IOS.CAMERA);
+        res2 === RESULTS.GRANTED
+          ? (async () => {
+            setCameraGranted(true);
+            await AppStorage.setCameraPermission(true);
+          })()
+          : setCameraGranted(false);
+      }
+    }
+  };
 
   useEffect(() => {
-    (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
+    handleCameraPermission();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = ({ data, type }) => {
     setScanned(true);
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
-
-  if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
 
   return (
     <SafeAreaLayout
@@ -61,6 +90,38 @@ export default props => {
         title="Scan a verification"
         subtitle=" ----- "
       />
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+        }}>
+        {!cameraGranted && <Text>No Permssion to access your camera</Text>}
+        {cameraGranted &&
+          <BarcodeScanner
+            style={styles.scanQR}
+            onBarcodeRead={handleBarCodeScanned}
+            onException={exceptionKey => {
+              // check instructions on Github for a more detailed overview of these exceptions.
+              switch (exceptionKey) {
+                case Exception.NO_PLAY_SERVICES:
+                // tell the user they need to update Google Play Services
+                case Exception.LOW_STORAGE:
+                // tell the user their device doesn't have enough storage to fit the barcode scanning magic
+                case Exception.NOT_OPERATIONAL:
+                // Google's barcode magic is being downloaded, but is not yet operational.
+                default:
+                  break;
+              }
+            }}
+            focusMode={FocusMode.AUTO /* could also be TAP or FIXED */}
+            torchMode={TorchMode.ON /* could be the default OFF */}
+            cameraFillMode={
+              CameraFillMode.COVER /* could also be FIT */
+            }
+            barcodeType={BarcodeType.QR_CODE}
+          />}
+      </View>
       {scanned && <Button
         style={styles.scanButton}
         appearance='giant'
@@ -68,18 +129,6 @@ export default props => {
         onPress={() => setScanned(false)}>
         Scan
       </Button>}
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-        }}>
-        <BarCodeScanner
-          barCodeTypes={BarCodeScanner.Constants.BarCodeType.qr ? [BarCodeScanner.Constants.BarCodeType.qr] : []}
-          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-          style={styles.scanQR}
-        />
-      </View>
     </SafeAreaLayout>
   );
 };
@@ -97,3 +146,9 @@ const styles = StyleSheet.create({
     margin: 16,
   },
 });
+
+const mapStateToProps = (state, ownProps) => ({
+  user: state.user
+});
+
+export default connect(mapStateToProps, {})(ScannerWrapped);

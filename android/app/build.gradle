@@ -181,16 +181,18 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-barcode-scanner-google')
     implementation project(':react-native-camera')
-    implementation (project(':expo-camera')) {
-        exclude group: 'com.google.android', module: 'cameraview'
-    }
+//    implementation (project(':expo-camera')) {
+//        exclude group: 'com.google.android', module: 'cameraview'
+//    }
 //  implementation project(path: ':expo-camera')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(path: ':unimodules-core')
     implementation project(path: ':unimodules-react-native-adapter')
     implementation project(':react-native-svg')
     implementation 'com.facebook.react:react-native:+'  // From node_modules
+    implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'androidx.appcompat:appcompat:1.3.0-alpha01'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-rc01'
 

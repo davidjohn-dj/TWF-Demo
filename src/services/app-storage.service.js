@@ -3,6 +3,7 @@ import { AsyncStorage, YellowBox } from 'react-native';
 const MAPPING_KEY = 'mapping';
 const THEME_KEY = 'theme';
 const IS_FIRST_TIME_KEY = 'isFirstTime';
+const CAMERA = 'CAMERA';
 
 export class AppStorage {
 
@@ -18,6 +19,12 @@ export class AppStorage {
     });
   };
 
+  static getCameraPermission = async (fallback) => {
+    return await AsyncStorage.getItem(CAMERA).then((camera) => {
+      return camera || fallback;
+    });
+  };
+
   static getTheme = (fallback) => {
     return AsyncStorage.getItem(THEME_KEY).then((theme) => {
       return theme || fallback;
@@ -30,6 +37,10 @@ export class AppStorage {
 
   static setIsFirstTime = async (firstTime) => {
     return await AsyncStorage.setItem(IS_FIRST_TIME_KEY, firstTime);
+  };
+
+  static setCameraPermission = async (camera) => {
+    return await AsyncStorage.setItem(CAMERA, camera);
   };
 
   static setTheme = (theme) => {

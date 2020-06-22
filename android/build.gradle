@@ -28,10 +28,10 @@ buildscript {
 allprojects {
     repositories {
         mavenLocal()
-        maven {
-            // expo-camera bundles a custom com.google.android:cameraview
-            url "$rootDir/../node_modules/expo-camera/android/maven"
-        }
+//        maven {
+//            // expo-camera bundles a custom com.google.android:cameraview
+//            url "$rootDir/../node_modules/expo-camera/android/maven"
+//        }
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url("$rootDir/../node_modules/react-native/android")
