@@ -72,7 +72,6 @@ const ScannerWrapped = props => {
   }, []);
 
   const handleBarCodeScanned = ({ data, type }) => {
-    setScanned(true);
     alert(`Bar code with type ${type} and data ${data} has been scanned!`);
   };
 
@@ -91,8 +90,6 @@ const ScannerWrapped = props => {
       <View
         style={{
           flex: 1,
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
           justifyContent: "center",
           alignItems: "center",
         }}>
@@ -122,13 +119,13 @@ const ScannerWrapped = props => {
             barcodeType={BarcodeType.QR_CODE}
           />}
       </View>
-      {scanned && <Button
+      {/* <Button
         style={styles.scanButton}
         appearance='giant'
         status='primary'
         onPress={() => setScanned(false)}>
         Scan
-      </Button>}
+      </Button> */}
     </SafeAreaLayout>
   );
 };
@@ -142,8 +139,9 @@ const styles = StyleSheet.create({
     margin: 16,
   },
   scanQR: {
-    ...StyleSheet.absoluteFillObject,
-    height: 400,
+    // ...StyleSheet.absoluteFillObject,
+    // marginHorizontal: 16,
+    height: '100%',
     width: '100%',
   },
 });
