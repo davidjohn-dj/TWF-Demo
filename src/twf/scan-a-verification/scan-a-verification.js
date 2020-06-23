@@ -10,15 +10,10 @@ import { SafeAreaLayout } from '../../components/safe-area-layout.component';
 import QRCode from 'react-native-qrcode-svg';
 import { MenuIcon } from '../../components/icons';
 import ScreenHeader from '../common/screen_header'
-import BarcodeScanner, {
-  Exception, FocusMode,
-  TorchMode, CameraFillMode, BarcodeType,
-  pauseScanner, resumeScanner
-} from 'react-native-barcode-scanner-google';
+import BarcodeScanner, { Exception, FocusMode, CameraFillMode, BarcodeType,
+  TorchMode, pauseScanner, resumeScanner } from 'react-native-barcode-scanner-google';
 
 const ScannerWrapped = props => {
-
-  console.log("props: ", props);
 
   const [cameraGranted, setCameraGranted] = useState(props.user.cameraGranted);
   const [scanned] = useState(false);
@@ -39,28 +34,33 @@ const ScannerWrapped = props => {
       const res = await check(PERMISSIONS.ANDROID.CAMERA);
 
       if (res === RESULTS.GRANTED) {
-        setCameraGranted(true);
+        (async () => {
+          setCameraGranted(true);
+          await AppStorage.setCameraPermission("true");
+        })()
       } else if (res === RESULTS.DENIED) {
         const res2 = await request(PERMISSIONS.ANDROID.CAMERA);
         res2 === RESULTS.GRANTED
           ? (async () => {
             setCameraGranted(true);
-            await AppStorage.setCameraPermission(true);
+            await AppStorage.setCameraPermission("true");
           })()
           : setCameraGranted(false);
       }
-    }
-    if (Platform.OS === 'ios') {
+    } else if (Platform.OS === 'ios') {
       const res = await check(PERMISSIONS.IOS.CAMERA);
 
       if (res === RESULTS.GRANTED) {
-        setCameraGranted(true);
+        (async () => {
+          setCameraGranted(true);
+          await AppStorage.setCameraPermission("true");
+        })()
       } else if (res === RESULTS.DENIED) {
         const res2 = await request(PERMISSIONS.IOS.CAMERA);
         res2 === RESULTS.GRANTED
           ? (async () => {
             setCameraGranted(true);
-            await AppStorage.setCameraPermission(true);
+            await AppStorage.setCameraPermission("true");
           })()
           : setCameraGranted(false);
       }

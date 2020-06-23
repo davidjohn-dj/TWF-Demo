@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { SET_USER_DATA } from '../types';
 import CONFIG from './../../../app.json';
-import Toast, {DURATION} from 'react-native-easy-toast';
+import { AppStorage } from '../../services/app-storage.service';
+import Toast, { DURATION } from 'react-native-easy-toast';
 
 const baseURL = CONFIG.API_HOST;
 
@@ -10,6 +11,34 @@ export function setUserData(content) {
     type: SET_USER_DATA,
     content,
   };
+}
+
+export function getFirstTime() {
+  return async (dispatch) => {
+    return await AppStorage.getIsFirstTime().then(result => {
+      if (result) {
+        result = JSON.parse(result);
+        dispatch(setUserData({
+          isFirstLogin: result
+        }));
+      }
+      return result;
+    });
+  }
+}
+
+export function getCamera() {
+  return async (dispatch) => {
+    return await AppStorage.getCameraPermission().then(result => {
+      if (result) {
+        result = JSON.parse(result);
+        dispatch(setUserData({
+          cameraGranted: result
+        }));
+      }
+      return result;
+    });
+  }
 }
 
 export function getUserInfo(data) {
@@ -40,143 +69,6 @@ export function getUserInfo(data) {
       console.log(error);
     });
   };
-}
-
-export function updateUserInfo(obj, keycloak) {
-  return (dispatch) => {
-    dispatch(setUserData({
-      emailId: obj.email,
-      keycloak: keycloak
-    }));
-  };
-}
-
-// create user API
-export function createUser(formData) {
-  const config = {
-    headers: {
-      'content-type': 'multipart/form-data'
-    }
-  }
-  return (dispatch) => {
-    return axios.post(baseURL + 'api/admin/create-user', formData, config).then((response) => {
-      return response.data;
-    }).catch((error) => {
-      console.log(error);
-    });
-  };
-}
-
-// edit user API
-export function editUser(formData) {
-  const config = {
-    headers: {
-      'content-type': 'multipart/form-data'
-    }
-  }
-  return (dispatch) => {
-    return axios.post(baseURL + 'api/admin/edit-user', formData, config).then((response) => {
-      dispatch(setUserData({
-
-      }));
-      return response.data;
-    }).catch((error) => {
-      console.log(error);
-    });
-  };
-}
-
-// fetch user API
-export function fetchUsers() {
-  return (dispatch) => {
-    return axios.get(baseURL + 'api/admin/fetch-users').then((response) => {
-      dispatch(setUserData({
-        usersList: response.data.body
-      }));
-      return response.data.body;
-    }).catch((error) => {
-      console.log(error);
-    });
-  };
-}
-
-export function fetchAgencyList() {
-  return (dispatch) => {
-    return axios.get(baseURL + 'api/agency/list').then((response) => {
-      if (response.status = 200) {
-        dispatch(setUserData({
-          agencyArr: response.data.body
-        }));
-      }
-      return response.data.body;
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
-}
-
-export function updateUserStatus(id) {
-  return (dispatch) => {
-    return axios.put(baseURL + 'api/admin/update-status', { userId: id }).then((response) => {
-      return response.data;
-    }).catch((error) => {
-      console.log(error);
-    });
-  };
-}
-
-export function fetchBrandList() {
-  return (dispatch) => {
-    return axios.get(baseURL + 'api/brand/list').then((response) => {
-      if (response.status = 200) {
-        dispatch(setUserData({
-          brandArr: response.data || []
-        }));
-      }
-      return (response.data || []);
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
-}
-
-export function fetchCountryCodeList() {
-  return (dispatch) => {
-    return axios.get(baseURL + 'api/country/getAllCountryCode').then((response) => {
-      dispatch(setUserData({
-        countryArr: response.data
-      }));
-      return response.data;
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
-}
-
-export function fetchCountryList() {
-  return (dispatch) => {
-    return axios.get(baseURL + 'api/country/list').then((response) => {
-      dispatch(setUserData({
-        countryListArr: response.data
-      }));
-      return response.data;
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
-}
-
-export function fetchLanguageList() {
-  return (dispatch) => {
-    return axios.get(baseURL + 'opapi/language/list').then((response) => {
-      dispatch(setUserData({
-        languageArr: response.data || []
-      }));
-      return response.data;
-    }).catch((error) => {
-      console.log(error);
-    });
-  }
 }
 
 export function updateDataObj(obj) {

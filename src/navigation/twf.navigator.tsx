@@ -35,7 +35,6 @@ const TopTab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
 
 export const TWFNavigator = (props): React.ReactElement => (
-
   <Stack.Navigator headerMode='none'>
     {console.log("props", props)}
     {props.user.isFirstLogin &&

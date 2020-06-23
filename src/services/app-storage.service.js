@@ -1,4 +1,4 @@
-import { AsyncStorage, YellowBox } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const MAPPING_KEY = 'mapping';
 const THEME_KEY = 'theme';
@@ -55,4 +55,4 @@ export class AppStorage {
  * However, Expo runs AsyncStorage exported from react-native.
  * Just to save application bundle size, we still using this one.
  */
-YellowBox.ignoreWarnings(['AsyncStorage has been extracted']);
+// YellowBox.ignoreWarnings(['AsyncStorage has been extracted']);

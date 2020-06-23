@@ -13,6 +13,7 @@ import { SplashImage } from '../components/splash-image.component';
 import { AppNavigator } from '../navigation/app.navigator';
 import { AppStorage } from '../services/app-storage.service';
 import { Mapping, Theme, Theming } from '../services/theme.service';
+import { getFirstTime, getCamera } from '../redux/actions/user';
 
 const loadingTasks: Task[] = [
   // Should be used it when running Expo.
@@ -23,6 +24,8 @@ const loadingTasks: Task[] = [
     'opensans-regular': require('../assets/fonts/opensans-regular.ttf'),
     'roboto-regular': require('../assets/fonts/roboto-regular.ttf'),
   }),
+  () => store.dispatch(getFirstTime()),
+  () => store.dispatch(getCamera()),
   () => AppStorage.getMapping(defaultConfig.mapping).then(result => ['mapping', result]),
   () => AppStorage.getTheme(defaultConfig.theme).then(result => ['theme', result]),
 ];
