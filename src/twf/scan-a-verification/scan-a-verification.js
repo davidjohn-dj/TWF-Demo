@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Platform } from 'react-native';
-import { PERMISSIONS, check, request } from 'react-native-permissions';
+import { PERMISSIONS, RESULTS, check, request } from 'react-native-permissions';
 import { AppStorage } from '../../services/app-storage.service';
 import { connect } from 'react-redux';
 import { Button, CheckBox, Layout, StyleService, Text, useStyleSheet } from '@ui-kitten/components';
@@ -11,19 +11,17 @@ import QRCode from 'react-native-qrcode-svg';
 import { MenuIcon } from '../../components/icons';
 import ScreenHeader from '../common/screen_header'
 import BarcodeScanner, {
-  Exception,
-  FocusMode,
-  TorchMode,
-  CameraFillMode,
-  BarcodeType,
-  pauseScanner,
-  resumeScanner
+  Exception, FocusMode,
+  TorchMode, CameraFillMode, BarcodeType,
+  pauseScanner, resumeScanner
 } from 'react-native-barcode-scanner-google';
 
 const ScannerWrapped = props => {
 
+  console.log("props: ", props);
+
   const [cameraGranted, setCameraGranted] = useState(props.user.cameraGranted);
-  const [scanned, setScanned] = useState(false);
+  const [scanned] = useState(false);
 
   const onItemPress = (index) => {
     props.navigation.navigate(data[index].route);
@@ -95,6 +93,8 @@ const ScannerWrapped = props => {
           flex: 1,
           flexDirection: 'column',
           justifyContent: 'flex-end',
+          justifyContent: "center",
+          alignItems: "center",
         }}>
         {!cameraGranted && <Text>No Permssion to access your camera</Text>}
         {cameraGranted &&
@@ -115,9 +115,9 @@ const ScannerWrapped = props => {
               }
             }}
             focusMode={FocusMode.AUTO /* could also be TAP or FIXED */}
-            torchMode={TorchMode.ON /* could be the default OFF */}
+            // torchMode={TorchMode.ON /* could be the default OFF */}
             cameraFillMode={
-              CameraFillMode.COVER /* could also be FIT */
+              CameraFillMode.FIT /* could also be COVER */
             }
             barcodeType={BarcodeType.QR_CODE}
           />}
@@ -138,12 +138,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scanButton: {
+    marginHorizontal: 16,
     margin: 16,
   },
   scanQR: {
     ...StyleSheet.absoluteFillObject,
-    height: 300,
-    margin: 16,
+    height: 400,
+    width: '100%',
   },
 });
 
